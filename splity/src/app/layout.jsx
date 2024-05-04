@@ -23,15 +23,15 @@ export default function RootLayout({ children }) {
           fontSans.variable
         )}
       >
-        <ThemeProvider
+        {/* <ThemeProvider
           attribute="class"
           defaultTheme="system"
           enableSystem
           disableTransitionOnChange
-        >
+        > */}
           {/* <ThemeToggle /> */}
           {children}
-        </ThemeProvider>
+        {/* </ThemeProvider> */}
       </body>
     </html>
   );
