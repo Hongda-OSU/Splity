@@ -4,7 +4,7 @@ import Image from "next/image";
 export default function Main() {
   return (
     <main className="flex min-h-screen flex-col items-center bg-black text-white p-20 w-full px-10">
-      <div className="flex flex-grow flex-col justify-between w-full max-w-lg"> 
+      <div className="flex flex-grow flex-col justify-between w-full max-w-8xl"> 
         <div>
           <h1 className="text-3xl font-bold mb-4">Splity</h1>
           <p className="text-xl">Split bills in a snap with friends 🥳</p>
