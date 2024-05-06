@@ -1,4 +1,6 @@
 import Image from "next/image";
+import BurgerImage from "../../public/images/burger.png";
+import BillImage from "../../public/images/bill.png";
 
 export default function Home() {
   return (
@@ -17,7 +19,7 @@ export default function Home() {
                 className="bg-white text-black px-6 py-3 rounded transition duration-300 ease-in-out hover:bg-slate-500 hover:text-white flex items-center justify-center gap-2 w-full mb-4"
               >
                 <Image
-                  src="/burger.png"
+                  src={BurgerImage}
                   alt="Start Split Icon"
                   width={24}
                   height={24}
@@ -29,7 +31,7 @@ export default function Home() {
                 className="bg-white text-black px-6 py-3 rounded transition duration-300 ease-in-out hover:bg-slate-500 hover:text-white flex items-center justify-center gap-2 w-full"
               >
                 <Image
-                  src="/bill.png"
+                  src={BillImage}
                   alt="Join Bill Icon"
                   width={24}
                   height={24}

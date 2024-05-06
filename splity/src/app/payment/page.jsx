@@ -1,5 +1,9 @@
 import Image from "next/image";
 import Link from "next/link";
+import BackImage from "../../../public/images/back.png";
+import CardImage from "../../../public/images/card.png";
+import PaypalImage from "../../../public/images/paypal.png";
+import AppleImage from "../../../public/images/apple.png";
 
 export default function Payment() {
   return (
@@ -8,7 +12,7 @@ export default function Payment() {
         <div className="flex items-center justify-between mb-12">
           <Link href="/">
             <button className="p-2">
-              <Image src="/back.png" alt="Back" width={24} height={24} />
+              <Image src={BackImage} alt="Back" width={24} height={24} />
             </button>
           </Link>
           <h1 className="text-2xl font-bold flex-1 text-center">
@@ -24,7 +28,7 @@ export default function Payment() {
               </p>
             </div>
             <div className="grid grid-cols-3 gap-4 mb-4">
-              {["/card.png", "/paypal.png", "/apple.png"].map((src, index) => (
+              {[CardImage, PaypalImage, AppleImage].map((src, index) => (
                 <button
                   key={index}
                   className="border p-4 rounded text-center flex flex-col items-center justify-center"
