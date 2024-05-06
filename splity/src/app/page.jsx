@@ -16,7 +16,7 @@ export default function Home() {
             <div className="flex flex-col items-center w-full">
               <a
                 href="/payment"
-                className="bg-white text-black px-6 py-3 rounded transition duration-300 ease-in-out hover:bg-slate-500 hover:text-white flex items-center justify-center gap-2 w-full mb-4"
+                className="bg-white text-black px-6 py-3 rounded transition duration-300 ease-in-out hover:bg-slate-300 hover:text-white flex items-center justify-center gap-2 w-full mb-4"
               >
                 <Image
                   src={BurgerImage}
@@ -27,8 +27,8 @@ export default function Home() {
                 Start a Split
               </a>
               <a
-                href="#"
-                className="bg-white text-black px-6 py-3 rounded transition duration-300 ease-in-out hover:bg-slate-500 hover:text-white flex items-center justify-center gap-2 w-full"
+                href="/session-authentication"
+                className="bg-white text-black px-6 py-3 rounded transition duration-300 ease-in-out hover:bg-slate-300 hover:text-white flex items-center justify-center gap-2 w-full"
               >
                 <Image
                   src={BillImage}

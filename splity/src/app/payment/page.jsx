@@ -22,8 +22,8 @@ export default function Payment() {
         <div className="flex-grow p-6 border rounded-xl shadow-md flex flex-col justify-between">
           <div>
             <div>
-              <h1 className="text-base font-bold">Payment Method</h1>
-              <p className="text-xs mb-4 text-slate-500">
+              <h1 className="text-lg font-bold">Payment Method</h1>
+              <p className="text-sm mb-4 text-slate-500">
                 Add a new payment method to your account.
               </p>
             </div>
@@ -48,60 +48,60 @@ export default function Payment() {
             </div>
             <form className="flex flex-col flex-grow">
               <div className="flex flex-col mb-4">
-                <label htmlFor="name" className="mb-2 font-semibold">
+                <label htmlFor="name" className="mb-2 text-lg font-semibold">
                   Name
                 </label>
                 <input
                   id="name"
                   type="text"
                   placeholder="First Last"
-                  className="p-2 border rounded w-full"
+                  className="p-2 border rounded w-full text-sm"
                 />
               </div>
               <div className="flex flex-col mb-4">
-                <label htmlFor="card-number" className="mb-2 font-semibold">
+                <label htmlFor="card-number" className="mb-2 text-lg font-semibold">
                   Card number
                 </label>
                 <input
                   id="card-number"
                   type="text"
                   placeholder="Card number"
-                  className="p-2 border rounded w-full"
+                  className="p-2 border rounded w-full text-sm"
                 />
               </div>
               <div className="flex justify-between mb-4">
                 <div className="flex flex-col w-1/2 mr-2">
-                  <label htmlFor="expires-month" className="mb-2 font-semibold">
+                  <label htmlFor="expires-month" className="mb-2 text-lg font-semibold">
                     Expires
                   </label>
                   <select
                     id="expires-month"
-                    className="p-2 border rounded w-full"
+                    className="p-2 border rounded w-full text-sm"
                   >
                     <option>Month</option>
                   </select>
                 </div>
                 <div className="flex flex-col w-1/2">
-                  <label htmlFor="expires-year" className="mb-2 font-semibold">
+                  <label htmlFor="expires-year" className="mb-2 text-lg font-semibold">
                     &nbsp;
                   </label>
                   <select
                     id="expires-year"
-                    className="p-2 border rounded w-full"
+                    className="p-2 border rounded w-full text-sm"
                   >
                     <option>Year</option>
                   </select>
                 </div>
               </div>
               <div className="flex flex-col mb-6">
-                <label htmlFor="cvc" className="mb-2 font-semibold">
+                <label htmlFor="cvc" className="mb-2 text-lg font-semibold">
                   CVC
                 </label>
                 <input
                   id="cvc"
                   type="text"
                   placeholder="CVC"
-                  className="p-2 border rounded w-full"
+                  className="p-2 border rounded w-full text-sm"
                 />
               </div>
               <button
