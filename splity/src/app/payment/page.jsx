@@ -59,7 +59,10 @@ export default function Payment() {
                 />
               </div>
               <div className="flex flex-col mb-4">
-                <label htmlFor="card-number" className="mb-2 text-lg font-semibold">
+                <label
+                  htmlFor="card-number"
+                  className="mb-2 text-lg font-semibold"
+                >
                   Card number
                 </label>
                 <input
@@ -71,7 +74,10 @@ export default function Payment() {
               </div>
               <div className="flex justify-between mb-4">
                 <div className="flex flex-col w-1/2 mr-2">
-                  <label htmlFor="expires-month" className="mb-2 text-lg font-semibold">
+                  <label
+                    htmlFor="expires-month"
+                    className="mb-2 text-lg font-semibold"
+                  >
                     Expires
                   </label>
                   <select
@@ -82,7 +88,10 @@ export default function Payment() {
                   </select>
                 </div>
                 <div className="flex flex-col w-1/2">
-                  <label htmlFor="expires-year" className="mb-2 text-lg font-semibold">
+                  <label
+                    htmlFor="expires-year"
+                    className="mb-2 text-lg font-semibold"
+                  >
                     &nbsp;
                   </label>
                   <select
@@ -104,12 +113,16 @@ export default function Payment() {
                   className="p-2 border rounded w-full text-sm"
                 />
               </div>
-              <button
-                type="submit"
-                className="mt-auto w-full p-2 bg-black text-white font-bold rounded hover:bg-slate-600"
-              >
-                Continue
-              </button>
+              <div className="flex flex-col mt-8">
+                <Link href="/group-bill-info">
+                  <button
+                    type="submit"
+                    className="mt-auto w-full p-2 bg-black text-white font-bold rounded hover:bg-slate-600"
+                  >
+                    Continue
+                  </button>
+                </Link>
+              </div>
             </form>
           </div>
         </div>
