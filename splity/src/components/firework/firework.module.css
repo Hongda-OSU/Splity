@@ -1,0 +1,34 @@
+.fireworks {
+  position: absolute;
+  width: 150px;
+  height: 150px;
+  background: url("../../../public/images/e9951400.png") right top no-repeat;
+  background-size: auto 150px;
+  filter: invert(0) contrast(100%);
+  animation: fireworks 2s steps(24) infinite, random 8s steps(1) infinite;
+}
+
+@keyframes fireworks {
+  0% {
+    background-position: 0%;
+  }
+  50%,
+  100% {
+    background-position: 100% 100%;
+  }
+}
+
+@keyframes random {
+  0% {
+    transform: translate(0, 0);
+  }
+  25% {
+    transform: translate(200%, 50%) scale(0.8);
+  }
+  50% {
+    transform: translate(80%, 80%) scale(1);
+  }
+  75% {
+    transform: translate(20%, 60%) scale(0.65);
+  }
+}

@@ -1,7 +1,6 @@
 import { ThemeProvider } from "@/helper/theme-provider";
 import { Inter as FontSans } from "next/font/google";
 import { cn } from "@/lib/utils";
-import { ThemeToggle } from "@/components/theme-toggle/ThemeToggle";
 import "./globals.css";
 
 const fontSans = FontSans({
@@ -23,15 +22,14 @@ export default function RootLayout({ children }) {
           fontSans.variable
         )}
       >
-        {/* <ThemeProvider
+        <ThemeProvider
           attribute="class"
           defaultTheme="system"
           enableSystem
           disableTransitionOnChange
-        > */}
-          {/* <ThemeToggle /> */}
+        >
           {children}
-        {/* </ThemeProvider> */}
+        </ThemeProvider>
       </body>
     </html>
   );

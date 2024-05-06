@@ -1,28 +1,28 @@
-"use client";
 import Image from "next/image";
-import { useRouter } from "next/router";
+import Link from "next/link";
 
 export default function Payment() {
   return (
     <main className="flex min-h-screen items-center justify-center bg-white w-full px-10">
-      <div
-        className="flex flex-col w-full max-w-8xl"
-        style={{ flexGrow: 1 }}
-      >
+      <div className="flex flex-col w-full max-w-8xl" style={{ flexGrow: 1 }}>
         <div className="flex items-center justify-between mb-12">
-          <button onClick={() => router.push("/main")} className="p-2">
-            <Image src="/back.png" alt="Back" width={24} height={24} />
-          </button>
+          <Link href="/">
+            <button className="p-2">
+              <Image src="/back.png" alt="Back" width={24} height={24} />
+            </button>
+          </Link>
           <h1 className="text-2xl font-bold flex-1 text-center">
             Setup Payment
           </h1>
         </div>
         <div className="flex-grow p-6 border rounded-xl shadow-md flex flex-col justify-between">
-        <div>
-        <div>
-          <h1 className="text-base font-bold">Payment Method</h1>
-          <p className="text-xs mb-4 text-slate-500">Add a new payment method to your account.</p>
-        </div>
+          <div>
+            <div>
+              <h1 className="text-base font-bold">Payment Method</h1>
+              <p className="text-xs mb-4 text-slate-500">
+                Add a new payment method to your account.
+              </p>
+            </div>
             <div className="grid grid-cols-3 gap-4 mb-4">
               {["/card.png", "/paypal.png", "/apple.png"].map((src, index) => (
                 <button
@@ -36,7 +36,9 @@ export default function Payment() {
                     width={24}
                     height={24}
                   />
-                  <p className="text-sm flex-1 text-center">{["Card", "PayPal", "Apple"][index]}</p>
+                  <p className="text-sm flex-1 text-center">
+                    {["Card", "PayPal", "Apple"][index]}
+                  </p>
                 </button>
               ))}
             </div>
