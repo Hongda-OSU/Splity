@@ -75,7 +75,7 @@ export default function GroupBillInfo() {
                   type="submit"
                   className="mt-auto w-full p-2 bg-black text-white font-bold rounded hover:bg-slate-600"
                 >
-                  Let's Splity!
+                  Let&apos;s Splity!
                 </button>
               </div>
             </form>
