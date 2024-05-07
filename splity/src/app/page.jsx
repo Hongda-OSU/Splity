@@ -7,7 +7,7 @@ export default function Home() {
     <main className="flex min-h-screen flex-col">
       <div className="relative w-full">
         <div className="flex min-h-screen flex-col items-center bg-black text-white p-20 w-full px-10">
-          <div className="flex flex-grow flex-col justify-between w-full max-w-8xl">
+          <div className="flex flex-grow flex-col justify-between w-full max-w-sm">
             <div>
               <h1 className="text-3xl font-bold mb-4">Splity</h1>
               <p className="text-xl">Split bills in a snap with friends 🥳</p>

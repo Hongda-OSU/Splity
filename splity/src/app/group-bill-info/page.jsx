@@ -6,7 +6,7 @@ import BackImage from "../../../public/images/back.png";
 export default function GroupBillInfo() {
   return (
     <main className="flex min-h-screen items-center justify-center bg-white w-full px-10">
-      <div className="flex flex-col w-full max-w-8xl" style={{ flexGrow: 1 }}>
+      <div className="flex flex-col w-full max-w-sm" style={{ flexGrow: 1 }}>
         <div className="flex items-center justify-between mb-12">
           <Link href="/payment">
             <button className="p-2">
