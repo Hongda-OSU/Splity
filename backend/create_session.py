@@ -2,7 +2,6 @@ import json
 import boto3
 from botocore.exceptions import ClientError
 import random
-from decimal import Decimal
 
 def generate_unique_id(dynamodb):
     table = dynamodb.Table('PaymentSessions')
@@ -25,7 +24,7 @@ def lambda_handler(event, context):
     
     # Get data from the event
     team_leader = event['team_leader']
-    total_price = Decimal(event['total_price'])
+    total_price = (event['total_price'])
     password = event['password']
     member_count = event['num_members']
     bill_description = event["bill_description"]

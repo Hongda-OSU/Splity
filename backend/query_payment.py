@@ -25,7 +25,7 @@ def lambda_handler(event, context):
         # Prepare the information to be returned
         payment_info = {
             'session_id': session_id,
-            'bill_description': bill_description, 
+            'bill_description': item.get('bill_description', {}),
             'history': item.get('history', {})
         }
 

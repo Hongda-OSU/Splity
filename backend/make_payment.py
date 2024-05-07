@@ -1,7 +1,7 @@
 import json
 import boto3
 from botocore.exceptions import ClientError
-from datetime import datetime
+from datetime import datetime, timezone, timedelta
 
 def lambda_handler(event, context):
     # Connect to DynamoDB
@@ -25,21 +25,27 @@ def lambda_handler(event, context):
         if item['password'] != provided_password:
             return {'statusCode': 401, 'body': json.dumps('Unauthorized: Incorrect password')}
 
+        # Check if the history exists in the item
+        history = item.get('history', {})
+        
+        # Check if the payment for this member has already been made
+        if member_name in history:
+            return {'statusCode': 400, 'body': json.dumps('Payment already made for this member')}
+        
+        # Convert to CDT timezone
+        current_time = datetime.now(timezone(timedelta(hours=-5)))
+        
         # Update the date and status in the history for the member
-        if member_name in item['history']:
-            return {'statusCode': 404, 'body': json.dumps('Payment already made')}
-        else:
-            history = item.get('history', {})
-            history[member_name] = {
-                'date': datetime.now().strftime("%Y-%m-%d %H:%M:%S"),
-                'status': 'completed'
-            }
+        history[member_name] = {
+            'date': current_time.strftime("%Y-%m-%d %H:%M:%S"),
+            'status': 'completed'
+        }
         
         # Update the item in DynamoDB
         table.update_item(
             Key={'session_id': session_id},
             UpdateExpression='SET history = :val',
-            ExpressionAttributeValues={':val': member_history}
+            ExpressionAttributeValues={':val': history}
         )
         
         # Return success message to FE
@@ -53,4 +59,3 @@ def lambda_handler(event, context):
             'statusCode': 500,
             'body': json.dumps('Error processing payment')
         }
-
