@@ -49,7 +49,7 @@ export default function SessionAuthentication() {
                         Back
                       </button>
                     </Link>
-                    <Link href="/payment">
+                    <Link href="/payment2">
                       <button
                         type="submit"
                         className="bg-black text-white text-sm py-2 px-4 rounded"

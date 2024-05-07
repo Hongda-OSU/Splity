@@ -71,12 +71,14 @@ export default function GroupBillInfo() {
                 />
               </div>
               <div className="flex flex-col mt-8">
+                <Link href="split_success">
                 <button
                   type="submit"
                   className="mt-auto w-full p-2 bg-black text-white font-bold rounded hover:bg-slate-600"
                 >
                   Let's Splity!
                 </button>
+                </Link>
               </div>
             </form>
           </div>
