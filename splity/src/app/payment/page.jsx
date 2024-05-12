@@ -46,7 +46,7 @@ export default function Payment() {
                 </button>
               ))}
             </div>
-            <form className="flex flex-col flex-grow">
+            <form action="/group-bill-info" className="flex flex-col flex-grow">
               <div className="flex flex-col mb-4">
                 <label htmlFor="name" className="mb-2 text-lg font-semibold">
                   Name
@@ -54,8 +54,9 @@ export default function Payment() {
                 <input
                   id="name"
                   type="text"
-                  placeholder="First Last"
+                  placeholder="Full Name"
                   className="p-2 border rounded w-full text-sm"
+                  required
                 />
               </div>
               <div className="flex flex-col mb-4">
@@ -70,6 +71,7 @@ export default function Payment() {
                   type="text"
                   placeholder="Card number"
                   className="p-2 border rounded w-full text-sm"
+                  required
                 />
               </div>
               <div className="flex justify-between mb-4">
@@ -83,8 +85,21 @@ export default function Payment() {
                   <select
                     id="expires-month"
                     className="p-2 border rounded w-full text-sm"
+                    required
                   >
-                    <option>Month</option>
+                    <option value="">Month</option>
+                    <option value="01">January</option>
+                    <option value="02">February</option>
+                    <option value="03">March</option>
+                    <option value="04">April</option>
+                    <option value="05">May</option>
+                    <option value="06">June</option>
+                    <option value="07">July</option>
+                    <option value="08">August</option>
+                    <option value="09">September</option>
+                    <option value="10">October</option>
+                    <option value="11">November</option>
+                    <option value="12">December</option>
                   </select>
                 </div>
                 <div className="flex flex-col w-1/2">
@@ -97,8 +112,14 @@ export default function Payment() {
                   <select
                     id="expires-year"
                     className="p-2 border rounded w-full text-sm"
+                    required
                   >
-                    <option>Year</option>
+                    <option value="">Year</option>
+                    {/* JavaScript code to generate options */}
+                    {Array.from({ length: 21 }).map((_, index) => {
+                      const year = new Date().getFullYear() + index;
+                      return <option key={year} value={year}>{year}</option>;
+                    })}
                   </select>
                 </div>
               </div>
@@ -111,17 +132,16 @@ export default function Payment() {
                   type="text"
                   placeholder="CVC"
                   className="p-2 border rounded w-full text-sm"
+                  required
                 />
               </div>
               <div className="flex flex-col mt-8">
-                <Link href="/group-bill-info">
-                  <button
-                    type="submit"
-                    className="mt-auto w-full p-2 bg-black text-white font-bold rounded hover:bg-slate-600"
-                  >
-                    Continue
-                  </button>
-                </Link>
+                <button
+                  type="submit"
+                  className="mt-auto w-full p-2 bg-black text-white font-bold rounded hover:bg-slate-600"
+                >
+                  Continue
+                </button>
               </div>
             </form>
           </div>
