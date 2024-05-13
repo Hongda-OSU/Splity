@@ -1,12 +1,22 @@
 import Image from "next/image";
 import Link from "next/link";
-import BackImage from "../../../public/images/back.png";
-import AvatarImage from "../../../public/images/avatar.png";
+import BackImage from "../../../../public/images/back.png";
+import AvatarImage from "../../../../public/images/avatar.png";
 
 const formatDate = (date) => {
   const months = [
-    "Jan.", "Feb.", "Mar.", "Apr.", "May", "Jun.",
-    "Jul.", "Aug.", "Sep.", "Oct.", "Nov.", "Dec.",
+    "Jan.",
+    "Feb.",
+    "Mar.",
+    "Apr.",
+    "May",
+    "Jun.",
+    "Jul.",
+    "Aug.",
+    "Sep.",
+    "Oct.",
+    "Nov.",
+    "Dec.",
   ];
   const monthIndex = date.getMonth();
   const month = months[monthIndex];
@@ -17,7 +27,9 @@ const formatDate = (date) => {
   const ampm = hour >= 12 ? "PM" : "AM";
   hour = hour % 12;
   hour = hour ? hour : 12;
-  const formattedTime = `${month} ${day}, ${year} - ${hour}:${minute < 10 ? "0" + minute : minute} ${ampm}`;
+  const formattedTime = `${month} ${day}, ${year} - ${hour}:${
+    minute < 10 ? "0" + minute : minute
+  } ${ampm}`;
   return formattedTime;
 };
 
@@ -33,9 +45,7 @@ export default function Confirmation() {
               <Image src={BackImage} alt="Back" width={24} height={24} />
             </button>
           </Link>
-          <h1 className="text-2xl font-bold text-center">
-            Confirm Payment
-          </h1>
+          <h1 className="text-2xl font-bold text-center">Confirm Payment</h1>
         </div>
         <div className="flex flex-col items-center justify-center flex-grow gap-6">
           <Image

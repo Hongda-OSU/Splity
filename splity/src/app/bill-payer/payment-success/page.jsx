@@ -2,8 +2,8 @@ import Image from "next/image";
 import Link from "next/link";
 import styles from "./payment-success.module.css";
 import FireWork from "@/components/firework/Firework";
-import PaymentSuccessImage from "../../../public/images/Business-Competition.png";
-import AvatarImage from "../../../public/images/avatar.png";
+import PaymentSuccessImage from "../../../../public/images/Business-Competition.png";
+import AvatarImage from "../../../../public/images/avatar.png";
 
 const formatDate = (date) => {
   const months = [

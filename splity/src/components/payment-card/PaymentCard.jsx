@@ -1,6 +1,6 @@
 import "./PaymentCard.css";
 
-const PaymentCard = () => {
+const PaymentCard = ({ cardPlaceHolder, name, expiry, cvc }) => {
   return (
     <div className="flip-card">
       <div className="flip-card-inner">
@@ -109,16 +109,19 @@ const PaymentCard = () => {
               MDowMIXeN6gAAAAASUVORK5CYII="
             ></image>
           </svg>
-          <p className="number">9759 2484 5269 6576</p>
+          <p className="number">{cardPlaceHolder}</p>
           <p className="valid_thru">VALID THRU</p>
-          <p className="date_8264">1 2 / 2 4</p>
-          <p className="name">BRUCE WAYNE</p>
+          <p className="date_8264">
+            {expiry.year ? expiry.year.slice(-2) : "XX"} /{" "}
+            {expiry.month ? expiry.month : "XX"}
+          </p>
+          <p className="name">{name ? name : "YOUR NAME"}</p>
         </div>
         <div className="flip-card-back">
           <div className="strip"></div>
           <div className="mstrip"></div>
           <div className="sstrip">
-            <p className="code">***</p>
+            <p className="code">{cvc ? cvc : "XXX"}</p>
           </div>
         </div>
       </div>
