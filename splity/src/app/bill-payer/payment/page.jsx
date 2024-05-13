@@ -48,7 +48,7 @@ export default function Payment() {
                 </button>
               ))}
             </div>
-            <PaymentForm />
+            <PaymentForm action={"/bill-payer/confirm-payment"} />
           </div>
         </div>
       </div>

@@ -34,7 +34,7 @@ const formatDate = (date) => {
   return formattedTime;
 };
 
-export default function Confirmation() {
+export default function ConfirmPayment() {
   const getCurrentFormattedTime = () => formatDate(new Date());
 
   return (

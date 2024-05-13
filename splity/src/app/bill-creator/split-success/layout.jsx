@@ -3,7 +3,7 @@ export const metadata = {
     description: "",
   };
   
-  export default function PaymentLayout({ children }) {
+  export default function SplitSuccessLayout({ children }) {
     return <>{children}</>;
   }
   

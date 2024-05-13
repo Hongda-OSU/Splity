@@ -1,9 +1,8 @@
-"use client";
 import Image from "next/image";
 import Link from "next/link";
-import BackImage from "../../../public/images/back.png";
+import BackImage from "../../../../public/images/back.png";
 
-export default function GroupBillInfo() {
+export default function SetupGroupBill() {
   return (
     <main className="flex min-h-screen items-center justify-center bg-white w-full px-10">
       <div className="flex flex-col w-full max-w-sm" style={{ flexGrow: 1 }}>

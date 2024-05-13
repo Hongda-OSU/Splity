@@ -3,7 +3,7 @@ import { useState } from "react";
 import PaymentCard from "../payment-card/PaymentCard";
 import "./PaymentForm.css";
 
-const PaymentForm = () => {
+const PaymentForm = ({action}) => {
   const [cardNumber, setCardNumber] = useState("");
   const [cardPlaceHolder, setCardPlaceHolder] = useState("XXXX XXXX XXXX XXXX");
   const [name, setName] = useState("");
@@ -41,7 +41,7 @@ const PaymentForm = () => {
   };
 
   return (
-    <form action="/bill-payer/confirm-payment" className="flex flex-col flex-grow">
+    <form action={action} className="flex flex-col flex-grow">
       <div className="flex flex-col mb-4">
         <label htmlFor="card-number" className="mb-2 text-base font-bold">
           Card number
