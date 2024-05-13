@@ -1,5 +1,5 @@
 export const metadata = {
-    title: "Splity • Payment",
+    title: "Splity • Setup Payment",
     description: "",
   };
   

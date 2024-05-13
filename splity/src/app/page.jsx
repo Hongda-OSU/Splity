@@ -1,44 +1,74 @@
+"use client";
+import { useState } from "react";
+import Link from "next/link";
 import Image from "next/image";
-import BurgerImage from "../../public/images/burger.png";
-import BillImage from "../../public/images/bill.png";
+import Authenticator from "@/components/authenticator/Authenticator";
+import BurgerImage from "../../public/images/food-drink-hamburger.png";
+import VisaImage from "../../public/images/money-payments-credit-card-visa.png";
+import IconImage from "./icon.png";
+import ParryFaceImage from "../../public/images/partying-face.png";
+import styles from "./home.module.css";
 
 export default function Home() {
-  return (
-    <main className="flex min-h-screen flex-col">
-      <div className="relative w-full">
-        <div className="flex min-h-screen flex-col items-center bg-black text-white p-20 w-full px-10">
-          <div className="flex flex-grow flex-col justify-between w-full max-w-sm">
-            <div>
-              <h1 className="text-3xl font-bold mb-4">Splity</h1>
-              <p className="text-xl">Split bills in a snap with friends 🥳</p>
-            </div>
+  const [authenticator, setAuthenticator] = useState(false);
 
-            <div className="flex flex-col items-center w-full">
-              <a
-                href="/payment"
-                className="bg-white text-black px-6 py-3 rounded transition duration-300 ease-in-out hover:bg-slate-300 hover:text-white flex items-center justify-center gap-2 w-full mb-4"
-              >
+  return (
+    <main className="flex min-h-screen">
+      <div className="relative w-full bg-white">
+        <div className="flex min-h-screen flex-col bg-black text-white w-[430px] p-20 px-10 m-auto">
+          <div className="flex flex-grow flex-col justify-between w-full">
+            <div>
+              <section className="flex flex-row mb-4">
                 <Image
-                  src={BurgerImage}
-                  alt="Start Split Icon"
-                  width={24}
-                  height={24}
+                  src={IconImage}
+                  alt=""
+                  width={30}
+                  height={30}
+                  className="object-contain mr-3"
                 />
-                Start a Split
-              </a>
-              <a
-                href="/session-authentication"
-                className="bg-white text-black px-6 py-3 rounded transition duration-300 ease-in-out hover:bg-slate-300 hover:text-white flex items-center justify-center gap-2 w-full"
-              >
+                <h1 className="text-3xl font-bold">Splity</h1>
+              </section>
+              <section className="flex flex-row">
+                <p className="mt-3 text-xl">
+                  Split bills in a snap with friends
+                </p>
                 <Image
-                  src={BillImage}
-                  alt="Join Bill Icon"
-                  width={24}
-                  height={24}
+                  src={ParryFaceImage}
+                  alt=""
+                  width={48}
+                  height={48}
+                  className="object-cover"
                 />
-                Join a Bill
-              </a>
+              </section>
             </div>
+            {authenticator ? (
+              <Authenticator back={() => setAuthenticator(false)} />
+            ) : (
+              <div className="flex flex-col w-full">
+                <Link href="/bill-creator/payment">
+                  <button className={styles.button}>
+                    <Image
+                      src={BurgerImage}
+                      alt=""
+                      className={styles["button-icon"]}
+                    />
+                    <span className={styles["button-text"]}>Start a Split</span>
+                  </button>
+                </Link>
+
+                <button
+                  className={styles.button}
+                  onClick={() => setAuthenticator(true)}
+                >
+                  <Image
+                    src={VisaImage}
+                    alt=""
+                    className={styles["button-icon"]}
+                  />
+                  <span className={styles["button-text"]}>Join a Bill</span>
+                </button>
+              </div>
+            )}
           </div>
         </div>
       </div>
