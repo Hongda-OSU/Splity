@@ -3,7 +3,6 @@ import Link from "next/link";
 import styles from "./payment-success.module.css";
 import FireWork from "@/components/firework/Firework";
 import PaymentSuccessImage from "../../../../public/images/Business-Competition.png";
-import AvatarImage from "../../../../public/images/avatar.png";
 
 const formatDate = (date) => {
   const months = [
@@ -55,15 +54,7 @@ const PaymentSuccess = () => {
           <p className={styles.text2}>
             You have split the bill with <span>{`Hongda Lin`}</span>
           </p>
-          <div id={styles["avatar-container"]}>
-            <Image
-              src={AvatarImage}
-              alt=""
-              priority={true}
-              className={styles.image2}
-            />
-            <p className={styles.text3}>{`Hongda Lin`}</p>
-          </div>
+          <p className={styles.text3}>{`Hongda Lin`}</p>
           <p className={styles.text4}>{`$20.00`}</p>
           <p className={styles.text5}>{`for “Tuesday lunch”`}</p>
           <p className={styles.text6}>{getCurrentFormattedTime()}</p>

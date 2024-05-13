@@ -16,26 +16,20 @@ def generate_unique_id(dynamodb):
             raise
 
 def lambda_handler(event, context):
-    # Connect to DynamoDB
     dynamodb = boto3.resource('dynamodb')
     
-    # Generate a unique session ID
     session_id = generate_unique_id(dynamodb)
     
-    # Get data from the event
     team_leader = event['team_leader']
     total_price = (event['total_price'])
     password = event['password']
     member_count = event['num_members']
     bill_description = event["bill_description"]
 
-    # Calculate individual member amount
     individual_amount = total_price / member_count if member_count else 0
 
-    # Initialize the history as placeholder
     history = {}
     
-    # Put the item in the DynamoDB table
     table = dynamodb.Table('PaymentSessions')
     try:
         table.put_item(Item={

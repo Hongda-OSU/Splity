@@ -11,7 +11,7 @@ export default function Payment() {
   return (
     <main className="flex min-h-screen bg-black w-full">
       <div className="flex flex-col min-h-screen w-[430px] bg-white m-auto">
-        <div className="relative flex justify-center items-center mt-9">
+        <div className="relative flex justify-center items-center mt-10">
           <Link href="/">
             <Image
               src={BackImage}

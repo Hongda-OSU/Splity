@@ -1,7 +1,8 @@
 import Image from "next/image";
 import Link from "next/link";
 import BackImage from "../../../../public/images/back.png";
-import AvatarImage from "../../../../public/images/avatar.png";
+import ExchangeImage from "../../../../public/images/Currency-Exchange.png";
+import styles from "./confirm-payment.module.css";
 
 const formatDate = (date) => {
   const months = [
@@ -38,30 +39,36 @@ export default function Confirmation() {
 
   return (
     <section className="flex justify-center items-center bg-black">
-      <main className="flex flex-col w-[430px] h-[932px] bg-white px-10 py-10">
-        <div className="flex items-center justify-between">
-          <Link href="/payment2">
-            <button className="p-2">
-              <Image src={BackImage} alt="Back" width={24} height={24} />
-            </button>
+      <main className="flex flex-col w-[430px] min-h-screen bg-white">
+        <div className="relative flex items-center justify-center mt-8">
+          <Link href="/bill-payer/payment">
+            <Image
+              src={BackImage}
+              alt=""
+              width={24}
+              height={24}
+              className={styles.backimage}
+            />
           </Link>
-          <h1 className="text-2xl font-bold text-center">Confirm Payment</h1>
+          <h1 className={styles.header}>Confirm Payment</h1>
         </div>
         <div className="flex flex-col items-center justify-center flex-grow gap-6">
           <Image
-            src={AvatarImage}
+            src={ExchangeImage}
             alt="Profile avatar"
-            width={150}
-            height={150}
-            className="rounded-full"
+            width={256}
+            height={256}
           />
-          <p className="text-lg font-semibold">Hongda Lin</p>
-          <p className="text-3xl font-semibold">$20.00</p>
-          <p className="text-gray-500">for “Tuesday lunch”</p>
-          <p className="text-sm text-gray-400">{getCurrentFormattedTime()}</p>
-          <Link href="/payment-success">
-            <button className="w-60 bg-black text-white font-semibold py-3 rounded-lg hover:bg-gray-800">
-              Confirm Payment
+          <p className={styles.text1}>Hongda Lin</p>
+          <p className={styles.text2}>$20.00</p>
+          <p className={styles.text3}>for “Tuesday lunch”</p>
+          <p className={styles.text4}>{getCurrentFormattedTime()}</p>
+          <Link
+            href="/bill-payer/payment-success"
+            className="w-full flex justify-center"
+          >
+            <button className={styles.button}>
+              <span className={styles["button-text"]}>Confirm Payment</span>
             </button>
           </Link>
         </div>
