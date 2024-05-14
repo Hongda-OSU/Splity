@@ -1,86 +1,85 @@
 import Image from "next/image";
 import Link from "next/link";
 import BackImage from "../../../../public/images/back.png";
+import styles from "./setup-group-bill.module.css";
 
 export default function SetupGroupBill() {
   return (
-    <main className="flex min-h-screen items-center justify-center bg-white w-full px-10">
-      <div className="flex flex-col w-full max-w-sm" style={{ flexGrow: 1 }}>
-        <div className="flex items-center justify-between mb-12">
-          <Link href="/payment">
-            <button className="p-2">
-              <Image src={BackImage} alt="Back" width={24} height={24} />
-            </button>
+    <main className="flex min-h-screen bg-black w-full">
+      <div className="flex flex-col min-h-screen w-[430px] bg-white m-auto">
+        <div className="relative flex justify-center items-center mt-10">
+          <Link href="/bill-creator/payment">
+            <Image
+              src={BackImage}
+              alt=""
+              width={24}
+              height={24}
+              className={styles.backimage}
+            />
           </Link>
-          <h1 className="text-2xl font-bold flex-1 text-center">
-            Setup Group Bill
-          </h1>
+          <h1 className={styles.header}>Setup Payment</h1>
         </div>
-        <div className="flex-grow p-6 border rounded-xl shadow-md flex flex-col justify-between">
+        <div className="flex flex-col flex-grow p-6 mt-12">
           <div>
-            <div>
-              <h1 className="text-base font-bold">Group Bill Information</h1>
-              <p className="text-xs mb-4 text-slate-500">
-                Splity will use these information to generate group bill.
-              </p>
-            </div>
-            <form className="flex flex-col flex-grow">
-              <div className="flex flex-col mb-4">
-                <label htmlFor="name" className="mb-2 font-semibold">
-                  # people
-                </label>
-                <input
-                  id="name"
-                  type="text"
-                  placeholder="First Last"
-                  className="p-2 border rounded w-full"
-                />
-              </div>
-              <div className="flex flex-col mb-4">
-                <label htmlFor="name" className="mb-2 font-semibold">
-                  $ price
-                </label>
-                <input
-                  id="name"
-                  type="text"
-                  placeholder="First Last"
-                  className="p-2 border rounded w-full"
-                />
-              </div>
-              <div className="flex flex-col mb-4">
-                <label htmlFor="name" className="mb-2 font-semibold">
-                  Bill description
-                </label>
-                <input
-                  id="name"
-                  type="text"
-                  placeholder="First Last"
-                  className="p-2 border rounded w-full"
-                />
-              </div>
-              <div className="flex flex-col mb-4">
-                <label htmlFor="card-number" className="mb-2 font-semibold">
-                  Session code
-                </label>
-                <input
-                  id="card-number"
-                  type="text"
-                  placeholder="Card number"
-                  className="p-2 border rounded w-full"
-                />
-              </div>
-              <div className="flex flex-col mt-8">
-                <Link href="split_success">
-                <button
-                  type="submit"
-                  className="mt-auto w-full p-2 bg-black text-white font-bold rounded hover:bg-slate-600"
-                >
-                  Let&apos;s Splity!
-                </button>
-                </Link>
-              </div>
-            </form>
+            <h1 className="text-base font-bold">Group Bill Information</h1>
+            <p className="text-xs mb-4 text-slate-500">
+              Splity will use these information to generate group bill.
+            </p>
           </div>
+          <form className="flex flex-col flex-grow">
+            <div className="flex flex-col mb-4">
+              <label htmlFor="people" className="mb-2 font-semibold">
+                # people
+              </label>
+              <input
+                id="people"
+                type="text"
+                placeholder="# PEOPLE"
+                className="p-2 border rounded w-full"
+              />
+            </div>
+            <div className="flex flex-col mb-4">
+              <label htmlFor="price" className="mb-2 font-semibold">
+                $ price
+              </label>
+              <input
+                id="price"
+                type="text"
+                placeholder="$ PRICE"
+                className="p-2 border rounded w-full"
+              />
+            </div>
+            <div className="flex flex-col mb-4">
+              <label htmlFor="bill-description" className="mb-2 font-semibold">
+                Bill Description
+              </label>
+              <input
+                id="bill-description"
+                type="text"
+                placeholder="BILL DESCRIPTION"
+                className="p-2 border rounded w-full"
+              />
+            </div>
+            <div className="flex flex-col mb-8">
+              <label htmlFor="password" className="mb-2 font-semibold">
+                Password
+              </label>
+              <input
+                id="password"
+                type="text"
+                placeholder="PASSWORD"
+                className="p-2 border rounded w-full"
+              />
+            </div>
+            <Link
+              href="/bill-creator/split-success"
+              className="w-full flex justify-center"
+            >
+              <button className={styles.button}>
+                <span className={styles["button-text"]}>Confirm Payment</span>
+              </button>
+            </Link>
+          </form>
         </div>
       </div>
     </main>
