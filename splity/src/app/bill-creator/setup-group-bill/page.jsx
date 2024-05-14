@@ -30,7 +30,7 @@ export default function SetupGroupBill() {
                   # people
                 </label>
                 <input
-                  id="name"
+                  id="num"
                   type="text"
                   placeholder="First Last"
                   className="p-2 border rounded w-full"
@@ -41,7 +41,7 @@ export default function SetupGroupBill() {
                   $ price
                 </label>
                 <input
-                  id="name"
+                  id="price"
                   type="text"
                   placeholder="First Last"
                   className="p-2 border rounded w-full"
@@ -52,7 +52,7 @@ export default function SetupGroupBill() {
                   Bill description
                 </label>
                 <input
-                  id="name"
+                  id="description"
                   type="text"
                   placeholder="First Last"
                   className="p-2 border rounded w-full"
