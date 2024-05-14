@@ -26,49 +26,49 @@ export default function SetupGroupBill() {
               Splity will use these information to generate group bill.
             </p>
           </div>
-          <form className="flex flex-col flex-grow">
+          <form className="flex flex-col flex-grow mt-4">
             <div className="flex flex-col mb-4">
-              <label htmlFor="people" className="mb-2 font-semibold">
+              <label htmlFor="people" className="mb-2 font-bold text-sm">
                 # people
               </label>
               <input
                 id="people"
                 type="text"
                 placeholder="# PEOPLE"
-                className="p-2 border rounded w-full"
+                className="p-2 border rounded w-full text-sm"
               />
             </div>
             <div className="flex flex-col mb-4">
-              <label htmlFor="price" className="mb-2 font-semibold">
+              <label htmlFor="price" className="mb-2 font-bold text-sm">
                 $ price
               </label>
               <input
                 id="price"
                 type="text"
                 placeholder="$ PRICE"
-                className="p-2 border rounded w-full"
+                className="p-2 border rounded w-full text-sm"
               />
             </div>
             <div className="flex flex-col mb-4">
-              <label htmlFor="bill-description" className="mb-2 font-semibold">
+              <label htmlFor="bill-description" className="mb-2 font-bold text-sm">
                 Bill Description
               </label>
               <input
                 id="bill-description"
                 type="text"
                 placeholder="BILL DESCRIPTION"
-                className="p-2 border rounded w-full"
+                className="p-2 border rounded w-full text-sm"
               />
             </div>
             <div className="flex flex-col mb-8">
-              <label htmlFor="password" className="mb-2 font-semibold">
-                Password
+              <label htmlFor="password" className="mb-2 font-bold text-sm">
+                Session Password
               </label>
               <input
                 id="password"
                 type="text"
-                placeholder="PASSWORD"
-                className="p-2 border rounded w-full"
+                placeholder="SESSION PASSWORD"
+                className="p-2 border rounded w-full text-sm"
               />
             </div>
             <Link
