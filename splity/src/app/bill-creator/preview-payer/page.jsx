@@ -1,9 +1,8 @@
 import Image from "next/image";
 import Link from "next/link";
 import styles from "./preview-payer.module.css";
-import PreviewPayerImage from "../../../public/images/Becoming-Rich.png";
-import AvatarImage from "../../../public/images/avatar.png";
-import DotsImage from "../../../public/images/dots.png";
+import { PreviewPayerImage } from "@/helper/image";
+import PreviewItem from "@/components/preview-item/PreviewItem";
 
 const PreviewPayer = () => {
   return (
@@ -19,27 +18,14 @@ const PreviewPayer = () => {
           <p className={styles.text1}>Who has paid ?</p>
           <p className={styles.text2}>Theses people have paid your bill</p>
           <div className={styles["preview-container"]}>
-            {[...Array(6)].map((_, key) => (
-              <div key={key} className={styles["preview-item"]}>
-                <Image
-                  src={AvatarImage}
-                  alt=""
-                  priority={true}
-                  className={styles.image}
-                />
-                <p className={styles.text}>Hongda Lin</p>
-                <Image
-                  src={DotsImage}
-                  alt=""
-                  priority={true}
-                  className={styles.dots}
-                />
-              </div>
-            ))}
+            <PreviewItem />
           </div>
+          <p className={styles["receive-total"]}>
+            You have received $20 from your friends
+          </p>
           <Link href="/" className={styles.link}>
             <button className={styles.button}>
-              <span>Return</span>
+              <span className={styles["button-text"]}>Return</span>
             </button>
           </Link>
         </div>

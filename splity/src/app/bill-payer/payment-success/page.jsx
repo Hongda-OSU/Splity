@@ -1,38 +1,9 @@
 import Image from "next/image";
 import Link from "next/link";
-import styles from "./payment-success.module.css";
+import { formatDate } from "@/helper/date";
+import { PaymentSuccessImage } from "@/helper/image";
 import FireWork from "@/components/firework/Firework";
-import PaymentSuccessImage from "../../../../public/images/Business-Competition.png";
-
-const formatDate = (date) => {
-  const months = [
-    "Jan.",
-    "Feb.",
-    "Mar.",
-    "Apr.",
-    "May",
-    "Jun.",
-    "Jul.",
-    "Aug.",
-    "Sep.",
-    "Oct.",
-    "Nov.",
-    "Dec.",
-  ];
-  const monthIndex = date.getMonth();
-  const month = months[monthIndex];
-  const day = date.getDate();
-  const year = date.getFullYear();
-  let hour = date.getHours();
-  const minute = date.getMinutes();
-  const ampm = hour >= 12 ? "PM" : "AM";
-  hour = hour % 12;
-  hour = hour ? hour : 12;
-  const formattedTime = `${month} ${day}, ${year} - ${hour}:${
-    minute < 10 ? "0" + minute : minute
-  } ${ampm}`;
-  return formattedTime;
-};
+import styles from "./payment-success.module.css";
 
 const PaymentSuccess = () => {
   const getCurrentFormattedTime = () => {

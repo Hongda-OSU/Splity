@@ -1,10 +1,7 @@
 import Link from "next/link";
 import Image from "next/image";
-import MasterCardImage from "../../../../public/images/mastercard.svg";
-import VisaImage from "../../../../public/images/visa.svg";
-import UnionPayImage from "../../../../public/images/unionpay.svg";
-import BackImage from "../../../../public/images/back.png";
 import PaymentForm from "@/components/payment-form/PaymentForm";
+import { MasterCardImage, VisaImage2, UnionPayImage, BackImage } from "@/helper/image";
 import styles from "./payment.module.css";
 
 export default function Payment() {
@@ -30,7 +27,7 @@ export default function Payment() {
               Choose your payment method
             </p>
             <div className="grid grid-cols-3 gap-4 mt-4 mb-4">
-              {[MasterCardImage, VisaImage, UnionPayImage].map((src, index) => (
+              {[MasterCardImage, VisaImage2, UnionPayImage].map((src, index) => (
                 <button
                   key={index}
                   className="border p-3 rounded-lg text-center flex flex-col items-center justify-center"

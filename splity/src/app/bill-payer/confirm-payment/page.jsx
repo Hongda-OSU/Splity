@@ -1,38 +1,8 @@
 import Image from "next/image";
 import Link from "next/link";
-import BackImage from "../../../../public/images/back.png";
-import ExchangeImage from "../../../../public/images/Currency-Exchange.png";
+import { formatDate } from "@/helper/date";
+import { BackImage, ExchangeImage } from "@/helper/image";
 import styles from "./confirm-payment.module.css";
-
-const formatDate = (date) => {
-  const months = [
-    "Jan.",
-    "Feb.",
-    "Mar.",
-    "Apr.",
-    "May",
-    "Jun.",
-    "Jul.",
-    "Aug.",
-    "Sep.",
-    "Oct.",
-    "Nov.",
-    "Dec.",
-  ];
-  const monthIndex = date.getMonth();
-  const month = months[monthIndex];
-  const day = date.getDate();
-  const year = date.getFullYear();
-  let hour = date.getHours();
-  const minute = date.getMinutes();
-  const ampm = hour >= 12 ? "PM" : "AM";
-  hour = hour % 12;
-  hour = hour ? hour : 12;
-  const formattedTime = `${month} ${day}, ${year} - ${hour}:${
-    minute < 10 ? "0" + minute : minute
-  } ${ampm}`;
-  return formattedTime;
-};
 
 export default function ConfirmPayment() {
   const getCurrentFormattedTime = () => formatDate(new Date());
@@ -40,7 +10,7 @@ export default function ConfirmPayment() {
   return (
     <section className="flex justify-center items-center bg-black">
       <main className="flex flex-col w-[430px] min-h-screen bg-white">
-        <div className="relative flex items-center justify-center mt-8">
+        <div className="relative flex items-center justify-center mt-10">
           <Link href="/bill-payer/payment">
             <Image
               src={BackImage}
@@ -56,8 +26,8 @@ export default function ConfirmPayment() {
           <Image
             src={ExchangeImage}
             alt="Profile avatar"
-            width={256}
-            height={256}
+            width={280}
+            height={280}
           />
           <p className={styles.text1}>Hongda Lin</p>
           <p className={styles.text2}>$20.00</p>

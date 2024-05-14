@@ -1,6 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
-import BackImage from "../../../../public/images/back.png";
+import { BackImage } from "@/helper/image";
 import styles from "./setup-group-bill.module.css";
 
 export default function SetupGroupBill() {
@@ -19,7 +19,7 @@ export default function SetupGroupBill() {
           </Link>
           <h1 className={styles.header}>Setup Payment</h1>
         </div>
-        <div className="flex flex-col flex-grow p-6 mt-12">
+        <div className="flex flex-col flex-grow p-8 mt-6">
           <div>
             <h1 className="text-base font-bold">Group Bill Information</h1>
             <p className="text-xs mb-4 text-slate-500">
@@ -82,7 +82,7 @@ export default function SetupGroupBill() {
               />
             </div>
             <button className={styles.button} type="submit">
-              <span className={styles["button-text"]}>Confirm Payment</span>
+              <span className={styles["button-text"]}>Let&apos;s Splity</span>
             </button>
           </form>
         </div>

@@ -1,7 +1,7 @@
 .container {
   position: relative;
   width: 100%;
-  height: 100%;
+  min-height: 100vh;
   display: flex;
   margin: 0;
   padding: 0;
@@ -11,7 +11,7 @@
 #preview-payer {
   position: relative;
   width: 430px;
-  height: 932px;
+  min-height: 100vh;
   background: #f8f8f8;
   border: 0px solid #0000;
   margin: auto;
@@ -29,8 +29,8 @@
 }
 
 .image1 {
-  width: 320px;
-  height: 320px;
+  width: 280px;
+  height: 280px;
   object-fit: cover;
   margin-top: 3em;
   user-select: none;
@@ -42,7 +42,7 @@
   color: #000;
   font-family: "Montserrat", sans-serif;
   line-height: 1;
-  font-size: 1.8rem;
+  font-size: 1.6rem;
   font-weight: 800;
   letter-spacing: -1px;
   margin-top: 1.5em;
@@ -55,7 +55,7 @@
   color: #000;
   font-family: "Montserrat", sans-serif;
   line-height: 1;
-  font-size: 0.95rem;
+  font-size: 0.9rem;
   font-weight: 400;
   letter-spacing: -0.5px;
   margin-top: 1.2em;
@@ -64,50 +64,22 @@
 
 .preview-container {
   width: 80%;
-  height: 260px;
+  height: auto;
   display: flex;
   flex-flow: column nowrap;
-  overflow-y: auto;
   margin-top: 2em;
 }
 
-.preview-item {
-  position: relative;
-  width: 100%;
-  height: auto;
-  display: flex;
-  flex-flow: row nowrap;
-  justify-content: flex-start;
-  align-items: center;
-  margin-top: 0.5em;
-}
-
-.image {
-  width: 52px;
-  height: 52px;
-  object-fit: cover;
-  margin-left: 2em;
-}
-
-.text {
+.receive-total {
+  margin-top: 5em;
   width: fit-content;
   color: #000;
   font-family: "Montserrat", sans-serif;
   line-height: 1;
-  font-size: 0.95rem;
+  font-size: 0.9rem;
   font-weight: 600;
   letter-spacing: -0.5px;
-  margin-left: 1.4em;
   user-select: none;
-}
-
-.dots {
-  position: absolute;
-  right: 0;
-  margin-right: 2em;
-  margin-bottom: 4px;
-  object-fit: cover;
-  cursor: pointer;
 }
 
 .link {
@@ -118,20 +90,28 @@
 }
 
 .button {
-  display: inline-block;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   width: 80%;
   height: 56px;
+  background-color: #000;
+  border-radius: 8px;
+  margin-top: 3em;
+  margin-bottom: 5em;
+  user-select: none;
+}
+
+.button-text {
+  width: fit-content;
   color: #fff;
   font-family: "Montserrat", sans-serif;
-  text-transform: uppercase;
-  font-size: 1rem;
-  font-weight: 600;
   line-height: 1;
-  background: #000;
-  margin-top: 4em;
-  border-radius: 8px;
+  font-size: 0.95rem;
+  font-weight: 600;
+  letter-spacing: -0.5px;
   user-select: none;
-  cursor: pointer;
 }
 
 .button:active {

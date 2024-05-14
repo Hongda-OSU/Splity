@@ -23,7 +23,7 @@
   color: #000;
   font-family: "Montserrat", sans-serif;
   line-height: 1;
-  font-size: 1.8rem;
+  font-size: 1.6rem;
   font-weight: 600;
   letter-spacing: -1px;
   text-shadow: 0px 0.5px, 0.5px 0px, 0.5px 0.5px;
@@ -35,7 +35,8 @@
   color: #000;
   font-family: "Montserrat", sans-serif;
   line-height: 1;
-  font-size: 1.8rem;
+  font-size: 1.4rem;
+  margin-top: 0.5em;
   font-weight: 600;
   letter-spacing: -1px;
   user-select: none;
@@ -58,10 +59,10 @@
   color: #000;
   font-family: "Montserrat", sans-serif;
   line-height: 1;
-  font-size: 0.9rem;
+  font-size: 1em;
   font-weight: 600;
   letter-spacing: -0.5px;
-  margin-top: 3em;
+  margin-top: 2em;
   user-select: none;
 }
 

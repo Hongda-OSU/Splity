@@ -3,10 +3,12 @@ import { useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import Authenticator from "@/components/authenticator/Authenticator";
-import BurgerImage from "../../public/images/food-drink-hamburger.png";
-import VisaImage from "../../public/images/money-payments-credit-card-visa.png";
-import IconImage from "./icon.png";
-import ParryFaceImage from "../../public/images/partying-face.png";
+import {
+  IconImage,
+  BurgerImage,
+  VisaImage,
+  PartyFaceImage,
+} from "@/helper/image";
 import styles from "./home.module.css";
 
 export default function Home() {
@@ -33,7 +35,7 @@ export default function Home() {
                   Split bills in a snap with friends
                 </p>
                 <Image
-                  src={ParryFaceImage}
+                  src={PartyFaceImage}
                   alt=""
                   width={48}
                   height={48}
