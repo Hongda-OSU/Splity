@@ -26,7 +26,10 @@ export default function SetupGroupBill() {
               Splity will use these information to generate group bill.
             </p>
           </div>
-          <form className="flex flex-col flex-grow mt-4">
+          <form
+            action="/bill-creator/split-success"
+            className="flex flex-col flex-grow mt-4"
+          >
             <div className="flex flex-col mb-4">
               <label htmlFor="people" className="mb-2 font-bold text-sm">
                 # people
@@ -36,6 +39,7 @@ export default function SetupGroupBill() {
                 type="text"
                 placeholder="# PEOPLE"
                 className="p-2 border rounded w-full text-sm"
+                required
               />
             </div>
             <div className="flex flex-col mb-4">
@@ -47,10 +51,14 @@ export default function SetupGroupBill() {
                 type="text"
                 placeholder="$ PRICE"
                 className="p-2 border rounded w-full text-sm"
+                required
               />
             </div>
             <div className="flex flex-col mb-4">
-              <label htmlFor="bill-description" className="mb-2 font-bold text-sm">
+              <label
+                htmlFor="bill-description"
+                className="mb-2 font-bold text-sm"
+              >
                 Bill Description
               </label>
               <input
@@ -58,6 +66,7 @@ export default function SetupGroupBill() {
                 type="text"
                 placeholder="BILL DESCRIPTION"
                 className="p-2 border rounded w-full text-sm"
+                required
               />
             </div>
             <div className="flex flex-col mb-8">
@@ -69,16 +78,12 @@ export default function SetupGroupBill() {
                 type="text"
                 placeholder="SESSION PASSWORD"
                 className="p-2 border rounded w-full text-sm"
+                required
               />
             </div>
-            <Link
-              href="/bill-creator/split-success"
-              className="w-full flex justify-center"
-            >
-              <button className={styles.button}>
-                <span className={styles["button-text"]}>Confirm Payment</span>
-              </button>
-            </Link>
+            <button className={styles.button} type="submit">
+              <span className={styles["button-text"]}>Confirm Payment</span>
+            </button>
           </form>
         </div>
       </div>
