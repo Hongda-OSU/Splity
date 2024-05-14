@@ -32,7 +32,7 @@ export default function SetupGroupBill() {
                 <input
                   id="num"
                   type="text"
-                  placeholder="First Last"
+                  placeholder="Number of people"
                   className="p-2 border rounded w-full"
                 />
               </div>
@@ -43,7 +43,7 @@ export default function SetupGroupBill() {
                 <input
                   id="price"
                   type="text"
-                  placeholder="First Last"
+                  placeholder="Total price"
                   className="p-2 border rounded w-full"
                 />
               </div>
@@ -54,7 +54,7 @@ export default function SetupGroupBill() {
                 <input
                   id="description"
                   type="text"
-                  placeholder="First Last"
+                  placeholder="Bill description"
                   className="p-2 border rounded w-full"
                 />
               </div>
@@ -65,7 +65,7 @@ export default function SetupGroupBill() {
                 <input
                   id="card-number"
                   type="text"
-                  placeholder="Card number"
+                  placeholder="Session code"
                   className="p-2 border rounded w-full"
                 />
               </div>
