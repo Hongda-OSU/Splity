@@ -1,43 +1,33 @@
 "use client";
-import axios from "axios";
 import { useState } from "react";
 import { useMyStore } from "@/store/store";
 import { authenticate } from "@/helper/api";
 import { useRouter } from "next/navigation";
+import useAxios from "@/helper/useAxios";
+import Loading from "../loading/Loading";
 import "./Authenticator.css";
 
 const Authenticator = ({ back }) => {
   const router = useRouter();
   const setBillPayer = useMyStore((state) => state.setBillPayer);
-  const [billId, setBillId] = useState("");
+  const { loading, error, fetchData } = useAxios(authenticate, "POST");
+  const [bill_id, setBillId] = useState("");
   const [password, setPassword] = useState("");
-  const [error, setError] = useState(null);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    setError(null);
+    const data = await fetchData({ bill_id, password });
 
-    try {
-      const res = await axios.post(authenticate, {
-        bill_id: billId,
+    if (data) {
+      const { bill_creator, bill_description, bill_individual } = data;
+      setBillPayer({
+        bill_id,
         password,
+        bill_creator,
+        bill_description,
+        bill_individual,
       });
-
-      if (res.status === 200) {
-        const { bill_creator, bill_description, bill_individual } = res.data;
-        setBillPayer({
-          bill_id: billId,
-          password,
-          bill_creator,
-          bill_description,
-          bill_individual,
-        });
-        router.push("/bill-payer/payment");
-      }
-    } catch (err) {
-      setError(
-        "Authentication failed. Please check your Bill ID and Password."
-      );
+      router.push("/bill-payer/payment");
     }
   };
 
@@ -49,6 +39,7 @@ const Authenticator = ({ back }) => {
           <p className="text-sm mb-6 text-slate-500">
             Enter Bill ID and Password from your friend in order to join a bill.
           </p>
+          {loading && <Loading />}
           <label htmlFor="bill-id" className="text-sm mb-2 font-medium">
             Bill ID
           </label>
@@ -57,7 +48,7 @@ const Authenticator = ({ back }) => {
             type="text"
             className="mb-4 p-2 border border-slate-300 rounded bg-slate-100 placeholder-slate-400 text-sm"
             placeholder="Enter Bill ID"
-            value={billId}
+            value={bill_id}
             onChange={(e) => setBillId(e.target.value)}
           />
           <label htmlFor="password" className="text-sm mb-2 font-medium">
@@ -83,7 +74,7 @@ const Authenticator = ({ back }) => {
               type="submit"
               className="bg-black text-white text-sm py-2 px-4 rounded"
             >
-              Enter
+              {loading ? "Loading..." : "Enter"}
             </button>
           </div>
         </form>
