@@ -35,7 +35,7 @@ def lambda_handler(event, context):
 
     required_fields = [
         "bill_creator",
-        "total_price",
+        "bill_total",
         "total_members",
         "bill_description",
         "password",
@@ -56,9 +56,9 @@ def lambda_handler(event, context):
     }
 
     bill_creator = body["bill_creator"]
-    total_price = Decimal(str(body["total_price"]))
+    bill_total = Decimal(str(body["bill_total"]))
     total_members = body["total_members"]
-    individual_price = (total_price / total_members).quantize(
+    bill_individual = (bill_total / total_members).quantize(
         Decimal("0.0"), rounding=ROUND_HALF_UP
     )
     bill_description = body["bill_description"]
@@ -73,8 +73,8 @@ def lambda_handler(event, context):
             Item={
                 "bill_id": bill_id,
                 "bill_creator": bill_creator,
-                "total_price": total_price,
-                "individual_price": individual_price,
+                "bill_total": bill_total,
+                "bill_individual": bill_individual,
                 "total_members": total_members,
                 "bill_description": bill_description,
                 "password": password,

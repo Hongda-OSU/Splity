@@ -58,7 +58,7 @@ def lambda_handler(event, context):
         bill_info = {
             "bill_creator": bill.get("bill_creator"),
             "bill_description": bill.get("bill_description"),
-            "individual_price": bill.get("individual_price"),
+            "bill_individual": bill.get("bill_individual"),
         }
 
         return {
