@@ -9,7 +9,7 @@ import VisaImage2 from "../../public/images/visa.svg";
 import UnionPayImage from "../../public/images/unionpay.svg";
 import BackImage from "../../public/images/back.png";
 import ExchangeImage from "../../public/images/Currency-Exchange.png";
-import SuccessImage from "../../public/images/success.png";
+import SuccessImage from "../../public/images/Success.png";
 import PreviewPayerImage from "../../public/images/Consult-Experts.png";
 
 export {
