@@ -4,7 +4,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { formatDate } from "@/helper/date";
 import { SuccessImage } from "@/helper/image";
-import Firework from "@/components/firework/Firework";
+import Firework from "../../../components/firework/Firework";
 import styles from "./split-success.module.css";
 
 export default function SplitSuccess() {
