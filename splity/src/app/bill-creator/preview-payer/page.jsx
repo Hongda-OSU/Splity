@@ -1,5 +1,5 @@
 "use client";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import dynamic from "next/dynamic";
 import Image from "next/image";
 import Link from "next/link";
@@ -10,37 +10,31 @@ import { PreviewPayerImage } from "@/helper/image";
 import { query_payment_history } from "@/helper/api";
 import styles from "./preview-payer.module.css";
 
-const PreviewPayer = () => {
-  const Loading = dynamic(() => import("@/components/loading/Loading"), {
-    ssr: false,
-  });
+const Loading = dynamic(() => import("@/components/loading/Loading"), {
+  ssr: false,
+});
 
+const PreviewPayer = () => {
   const { data, loading, error } = useFetch(
     `${query_payment_history}?bill_id=7300`
   );
+
   const [paymentHistory, setPaymentHistory] = useState([]);
   const [paymentReceived, setPaymentReceived] = useState(0);
 
-  const handleWebSocketMessage = (message) => {
-    const { payer, amount, date } = message;
-    setPaymentHistory((prevHistory) => [
-      ...prevHistory,
-      { payer, amount, date },
-    ]);
-    setPaymentReceived((prevTotal) => prevTotal + amount);
-  };
+  useEffect(() => {
+    if (data) {
+      const payment_history = data.history || [];
+      const total_payment = payment_history.reduce(
+        (sum, { amount }) => sum + amount,
+        0
+      );
+      setPaymentHistory(payment_history);
+      setPaymentReceived(total_payment);
+    }
+  }, [data]);
 
-  if (data && paymentHistory.length === 0 && paymentReceived === 0) {
-    const payment_history = data.history || [];
-    const total_payment = payment_history.reduce(
-      (sum, { amount }) => sum + amount,
-      0
-    );
-    setPaymentHistory(payment_history);
-    setPaymentReceived(total_payment);
-
-    useWebSocket(handleWebSocketMessage);
-  }
+  useWebSocket(setPaymentHistory, setPaymentReceived);
 
   return (
     <section className={styles.container}>
