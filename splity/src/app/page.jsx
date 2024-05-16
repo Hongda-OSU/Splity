@@ -52,6 +52,8 @@ export default function Home() {
                     <Image
                       src={BurgerImage}
                       alt=""
+                      width="auto"
+                      height="auto"
                       className={styles["button-icon"]}
                     />
                     <span className={styles["button-text"]}>Start a Split</span>
@@ -65,6 +67,8 @@ export default function Home() {
                   <Image
                     src={VisaImage}
                     alt=""
+                    width="auto"
+                    height="auto"
                     className={styles["button-icon"]}
                   />
                   <span className={styles["button-text"]}>Join a Bill</span>

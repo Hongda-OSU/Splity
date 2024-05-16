@@ -36,8 +36,8 @@ export default function Payment() {
                     className="m-auto py-2 object-cover"
                     src={src}
                     alt=""
-                    width={36}
-                    height={36}
+                    width="auto"
+                    height="auto"
                   />
                   <p className="text-xs flex-1 text-center font-bold">
                     {["Master Card", "Visa", "Union Pay"][index]}
