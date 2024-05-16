@@ -1,5 +1,6 @@
 import json
 import boto3
+import time
 from decimal import Decimal
 
 
@@ -47,6 +48,13 @@ def lambda_handler(event, context):
             return {
                 "statusCode": 404,
                 "body": json.dumps({"message": "Bill not found"}),
+            }
+
+        current_time = int(time.time())
+        if "ttl" in bill and bill["ttl"] < current_time:
+            return {
+                "statusCode": 401,
+                "body": json.dumps({"message": "Bill has expired"}),
             }
 
         if bill["password"] != password:

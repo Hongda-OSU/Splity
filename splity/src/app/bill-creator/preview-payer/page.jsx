@@ -49,6 +49,8 @@ const PreviewPayer = () => {
           <Image
             src={PreviewPayerImage}
             alt=""
+            width="auto"
+            height="auto"
             priority={true}
             className={styles["preview-payer-image"]}
           />

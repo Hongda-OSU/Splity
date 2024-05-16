@@ -4,10 +4,14 @@ import { useMyStore } from "@/store/store";
 import { authenticate } from "@/helper/api";
 import { useRouter } from "next/navigation";
 import useAxios from "@/helper/useAxios";
-import Loading from "../loading/Loading";
+import dynamic from "next/dynamic";
 import "./Authenticator.css";
 
 const Authenticator = ({ back }) => {
+  const Loading = dynamic(() => import("../loading/Loading"), {
+    ssr: false,
+  });
+
   const router = useRouter();
   const setBillPayer = useMyStore((state) => state.setBillPayer);
   const { loading, error, fetchData } = useAxios(authenticate, "POST");
