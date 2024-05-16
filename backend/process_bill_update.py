@@ -1,41 +1,55 @@
 import json
 import boto3
+from datetime import datetime, timezone, timedelta
+from decimal import Decimal
 
-WEBSOCKET_API_ENDPOINT = (
-    "wss://9wjcu78y9i.execute-api.us-east-2.amazonaws.com/production/"
-)
-client = boto3.client("apigatewaymanagementapi", endpoint_url=WEBSOCKET_API_ENDPOINT)
 dynamodb = boto3.resource("dynamodb")
 connections_table = dynamodb.Table("SplityWebSocketConnection")
+endpoint_url = "https://9wjcu78y9i.execute-api.us-east-2.amazonaws.com/production"
+
+
+class DecimalEncoder(json.JSONEncoder):
+    def default(self, obj):
+        if isinstance(obj, Decimal):
+            return float(obj)
+        return super(DecimalEncoder, self).default(obj)
+
+
+def send_message(connection_id, message):
+    client = boto3.client("apigatewaymanagementapi", endpoint_url=endpoint_url)
+    try:
+        client.post_to_connection(
+            ConnectionId=connection_id, Data=json.dumps(message, cls=DecimalEncoder)
+        )
+        print(f"Message sent to {connection_id}: {message}")
+    except Exception as e:
+        print(f"Failed to send message to {connection_id}: {e}")
 
 
 def lambda_handler(event, context):
-    for record in event["Records"]:
-        if record["eventName"] in ["INSERT", "MODIFY"]:
-            new_image = record["dynamodb"]["NewImage"]
-            message = {"action": "update", "data": new_image}
-            connection_ids = get_all_connection_ids()
-            for connection_id in connection_ids:
-                send_message(event, connection_id, message)
-    return {"statusCode": 200}
-
-
-def get_all_connection_ids():
-    response = connections_table.scan()
-    return [item["connection_id"] for item in response["Items"]]
-
-
-def send_message(event, connection_id, message):
-    try:
-        client.post_to_connection(ConnectionId=connection_id, Data=json.dumps(message))
-    except client.exceptions.GoneException:
-        connections_table.delete_item(Key={"connection_id": connection_id})
 
     for record in event["Records"]:
         if record["eventName"] in ["INSERT", "MODIFY"]:
             new_image = record["dynamodb"]["NewImage"]
-            message = {"action": "update", "data": new_image}
-            connection_ids = get_all_connection_ids()
-            for connection_id in connection_ids:
+            history = new_image.get("history", {}).get("M", {})
+
+            if not history:
+                continue
+
+            latest_payer, latest_entry = max(
+                history.items(), key=lambda x: x[1]["M"]["date"]["S"]
+            )
+            latest_info = {
+                "payer": latest_payer,
+                "amount": float(latest_entry["M"]["amount"]["N"]),
+                "date": latest_entry["M"]["date"]["S"],
+            }
+
+            message = {"action": "update", "data": latest_info}
+            connections = connections_table.scan().get("Items", [])
+
+            for connection in connections:
+                connection_id = connection["connection_id"]
                 send_message(connection_id, message)
-    return {"statusCode": 200}
+
+    return {"statusCode": 200, "body": "Messages sent."}
