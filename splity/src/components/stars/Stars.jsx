@@ -1,6 +1,6 @@
 import "./Firework.css";
 
-const Firework = () => {
+const Stars = () => {
   return (
     <>
       <div className="fireworks" style={{ left: "0%", top: "0%" }}></div>
@@ -20,4 +20,4 @@ const Firework = () => {
   );
 };
 
-export default Firework;
+export default Stars;

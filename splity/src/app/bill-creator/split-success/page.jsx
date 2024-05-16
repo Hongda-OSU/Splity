@@ -4,7 +4,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { formatDate } from "@/helper/date";
 import { SuccessImage } from "@/helper/image";
-import Firework from "@/components/firework/Firework";
+import Stars from "@/components/stars/Stars";
 import styles from "./split-success.module.css";
 
 export default function SplitSuccess() {
@@ -21,7 +21,7 @@ export default function SplitSuccess() {
   return (
     <div className="flex justify-center items-center min-h-screen bg-black">
       <div className="relative flex flex-col items-center w-[430px] min-h-screen bg-white p-5">
-        <Firework />
+        <Stars />
         <Image
           src={SuccessImage}
           alt=""

@@ -2,7 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { formatDate } from "@/helper/date";
 import { PaymentSuccessImage } from "@/helper/image";
-import Firework from "@/components/firework/Firework";
+import Stars from "@/components/stars/Stars";
 import styles from "./payment-success.module.css";
 
 const PaymentSuccess = () => {
@@ -14,7 +14,7 @@ const PaymentSuccess = () => {
     <section className={styles.container}>
       <div id={styles["payment-success"]}>
         <div className={styles.wrapper}>
-          <Firework />
+          <Stars />
           <Image
             src={PaymentSuccessImage}
             alt=""
