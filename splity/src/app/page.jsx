@@ -6,7 +6,7 @@ import Authenticator from "@/components/authenticator/Authenticator";
 import {
   IconImage,
   BurgerImage,
-  VisaImage,
+  CreditCardImage,
   PartyFaceImage,
 } from "@/helper/image";
 import styles from "./home.module.css";
@@ -64,7 +64,7 @@ export default function Home() {
                   onClick={() => setAuthenticator(true)}
                 >
                   <Image
-                    src={VisaImage}
+                    src={CreditCardImage}
                     alt=""
                     width="auto"
                     height="auto"

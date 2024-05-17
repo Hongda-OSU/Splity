@@ -3,7 +3,7 @@ import Image from "next/image";
 import PaymentForm from "@/components/payment-form/PaymentForm";
 import {
   MasterCardImage,
-  VisaImage2,
+  VisaImage,
   UnionPayImage,
   BackImage,
 } from "@/helper/image";
@@ -32,7 +32,7 @@ export default function Payment() {
               Choose your payment method
             </p>
             <div className="grid grid-cols-3 gap-4 mt-4 mb-4">
-              {[MasterCardImage, VisaImage2, UnionPayImage].map(
+              {[MasterCardImage, VisaImage, UnionPayImage].map(
                 (src, index) => (
                   <button
                     key={index}

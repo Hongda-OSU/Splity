@@ -1,16 +1,23 @@
 "use client";
+import { useState } from "react";
+import dynamic from "next/dynamic";
 import Image from "next/image";
 import Link from "next/link";
 import { useMyStore } from "@/store/store";
-import { SuccessImage } from "@/helper/image";
+import { SuccessImage, EyeOpenImage, EyeCloseImage } from "@/helper/image";
 import { timeStampToDate } from "@/helper/date";
-import Stars from "@/components/stars/Stars";
 import styles from "./split-success.module.css";
+
+const Stars = dynamic(() => import("@/components/stars/Stars"), {
+  ssr: false,
+});
 
 export default function SplitSuccess() {
   const { billCreator } = useMyStore((state) => ({
     billCreator: state.billCreator,
   }));
+
+  const [showResumeCode, setShowResumeCode] = useState(false);
 
   return (
     <div className="flex justify-center items-center min-h-screen bg-black">
@@ -23,13 +30,13 @@ export default function SplitSuccess() {
           height={320}
           className="object-cover"
         />
-        <h1 className={styles.text1}>Splity Success !</h1>
+        <h1 className={styles["splity-success"]}>Splity Success !</h1>
         <p className={styles.text2}>
           Share your Bill ID & Password with your friends
         </p>
         <div className="flex flex-col w-full max-w-xs mt-8">
           <label htmlFor="bill-id" className="text-sm font-bold mb-2">
-            Bill ID
+            Bill ID <span className="text-red-500">*</span>
           </label>
           <input
             id="bill-id"
@@ -39,7 +46,7 @@ export default function SplitSuccess() {
             readOnly
           />
           <label htmlFor="password" className="text-sm font-bold mt-4 mb-2">
-            Password
+            Password <span className="text-red-500">*</span>
           </label>
           <input
             id="password"
@@ -51,13 +58,27 @@ export default function SplitSuccess() {
           <label htmlFor="resume-code" className="text-sm font-bold mt-4 mb-2">
             Resume Code
           </label>
-          <input
-            id="resume-code"
-            type="password"
-            value={billCreator.resume_code}
-            className="text-sm font-bold p-3 border rounded outline-none"
-            readOnly
-          />
+          <div className="relative">
+            <input
+              id="resume-code"
+              type={showResumeCode ? "text" : "password"}
+              value={billCreator.resume_code}
+              className="block w-full text-sm font-bold p-3 border rounded outline-none"
+              readOnly
+            />
+            <span
+              className="absolute top-0 end-0 p-3 text-sm font-bold"
+              onClick={() => setShowResumeCode(!showResumeCode)}
+            >
+              <Image
+                src={showResumeCode ? EyeCloseImage : EyeOpenImage}
+                alt=""
+                width="auto"
+                height="auto"
+                className={styles["eye-image"]}
+              />
+            </span>
+          </div>
         </div>
         <p className="text-xs text-gray-600 my-8">
           Bill expired at {timeStampToDate(billCreator.ttl)}
