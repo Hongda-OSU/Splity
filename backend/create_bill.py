@@ -22,6 +22,15 @@ def generate_bill_id(dynamodb):
 
 
 def lambda_handler(event, context):
+    dynamodb = boto3.resource("dynamodb")
+    table = dynamodb.Table("GroupBill")
+
+    headers = {
+        "Access-Control-Allow-Origin": "*",
+        "Access-Control-Allow-Methods": "OPTIONS,POST,GET",
+        "Access-Control-Allow-Headers": "Content-Type",
+    }
+
     try:
         if "body" in event:
             body = json.loads(event["body"])
@@ -30,6 +39,7 @@ def lambda_handler(event, context):
     except (TypeError, json.JSONDecodeError) as e:
         return {
             "statusCode": 400,
+            "headers": headers,
             "body": json.dumps("Bad Request: Invalid JSON format"),
         }
 
@@ -43,23 +53,15 @@ def lambda_handler(event, context):
     if not all(field in body for field in required_fields):
         return {
             "statusCode": 400,
+            "headers": headers,
             "body": json.dumps("Bad Request: Missing required fields"),
         }
-
-    dynamodb = boto3.resource("dynamodb")
-    table = dynamodb.Table("GroupBill")
-
-    headers = {
-        "Access-Control-Allow-Origin": "*",
-        "Access-Control-Allow-Methods": "OPTIONS,POST,GET",
-        "Access-Control-Allow-Headers": "Content-Type",
-    }
 
     bill_creator = body["bill_creator"]
     bill_total = Decimal(str(body["bill_total"]))
     total_members = body["total_members"]
     bill_individual = (bill_total / total_members).quantize(
-        Decimal("0.0"), rounding=ROUND_HALF_UP
+        Decimal("0.00"), rounding=ROUND_HALF_UP
     )
     bill_description = body["bill_description"]
     password = body["password"]

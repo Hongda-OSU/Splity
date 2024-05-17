@@ -5,27 +5,6 @@ from decimal import Decimal
 
 
 def lambda_handler(event, context):
-    try:
-        if "body" in event:
-            body = json.loads(event["body"])
-        else:
-            body = event
-
-        bill_id = body["bill_id"]
-        password = body["password"]
-        bill_payer = body["bill_payer"]
-        bill_amount = Decimal(str(body["bill_amount"]))
-    except KeyError as e:
-        return {
-            "statusCode": 400,
-            "body": json.dumps({"message": "Missing required field", "error": str(e)}),
-        }
-    except (TypeError, json.JSONDecodeError) as e:
-        return {
-            "statusCode": 400,
-            "body": json.dumps({"message": "Invalid input format", "error": str(e)}),
-        }
-
     dynamodb = boto3.resource("dynamodb")
     table = dynamodb.Table("GroupBill")
 
@@ -36,19 +15,36 @@ def lambda_handler(event, context):
     }
 
     try:
+        if "body" in event:
+            body = json.loads(event["body"])
+        else:
+            body = event
+
+        bill_id = body["bill_id"]
+        bill_payer = body["bill_payer"]
+        bill_amount = Decimal(str(body["bill_amount"]))
+    except KeyError as e:
+        return {
+            "statusCode": 400,
+            "headers": headers,
+            "body": json.dumps({"message": "Missing required field", "error": str(e)}),
+        }
+    except (TypeError, json.JSONDecodeError) as e:
+        return {
+            "statusCode": 400,
+            "headers": headers,
+            "body": json.dumps({"message": "Invalid input format", "error": str(e)}),
+        }
+
+    try:
         res = table.get_item(Key={"bill_id": bill_id})
         bill = res.get("Item")
 
         if not bill:
             return {
                 "statusCode": 404,
+                "headers": headers,
                 "body": json.dumps({"message": "Bill not found"}),
-            }
-
-        if bill["password"] != password:
-            return {
-                "statusCode": 401,
-                "body": json.dumps({"message": "Incorrect password"}),
             }
 
         history = bill.get("history", {})
@@ -56,6 +52,7 @@ def lambda_handler(event, context):
         if bill_payer in history:
             return {
                 "statusCode": 400,
+                "headers": headers,
                 "body": json.dumps({"message": "Payment already made for this member"}),
             }
 

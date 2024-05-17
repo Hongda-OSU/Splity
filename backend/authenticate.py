@@ -12,23 +12,6 @@ class DecimalEncoder(json.JSONEncoder):
 
 
 def lambda_handler(event, context):
-    try:
-        if "body" in event:
-            body = json.loads(event["body"])
-        else:
-            body = event
-    except (TypeError, json.JSONDecodeError) as e:
-        return {
-            "statusCode": 400,
-            "body": json.dumps({"message": "Invalid JSON format", "error": str(e)}),
-        }
-
-    if "bill_id" not in body or "password" not in body:
-        return {
-            "statusCode": 400,
-            "body": json.dumps({"message": "Missing bill_id or password"}),
-        }
-
     dynamodb = boto3.resource("dynamodb")
     table = dynamodb.Table("GroupBill")
 
@@ -37,6 +20,25 @@ def lambda_handler(event, context):
         "Access-Control-Allow-Methods": "OPTIONS,POST,GET",
         "Access-Control-Allow-Headers": "Content-Type",
     }
+
+    try:
+        if "body" in event:
+            body = json.loads(event["body"])
+        else:
+            body = event
+    except (TypeError, json.JSONDecodeError) as e:
+        return {
+            "statusCode": 400,
+            "headers": headers,
+            "body": json.dumps({"message": "Invalid JSON format", "error": str(e)}),
+        }
+
+    if "bill_id" not in body or "password" not in body:
+        return {
+            "statusCode": 400,
+            "headers": headers,
+            "body": json.dumps({"message": "Missing bill_id or password"}),
+        }
 
     bill_id = body["bill_id"]
     password = body["password"]
@@ -47,6 +49,7 @@ def lambda_handler(event, context):
         if not bill:
             return {
                 "statusCode": 404,
+                "headers": headers,
                 "body": json.dumps({"message": "Bill not found"}),
             }
 
@@ -54,12 +57,14 @@ def lambda_handler(event, context):
         if "ttl" in bill and bill["ttl"] < current_time:
             return {
                 "statusCode": 401,
+                "headers": headers,
                 "body": json.dumps({"message": "Bill has expired"}),
             }
 
         if bill["password"] != password:
             return {
                 "statusCode": 401,
+                "headers": headers,
                 "body": json.dumps({"message": "Incorrect password"}),
             }
 
