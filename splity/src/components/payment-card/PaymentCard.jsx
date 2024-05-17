@@ -112,8 +112,8 @@ const PaymentCard = ({ card_number, name, expiry, cvc }) => {
           <p className="number">{card_number}</p>
           <p className="valid_thru">VALID THRU</p>
           <p className="date_8264">
-            {expiry.year ? expiry.year.slice(-2) : "XX"} /{" "}
-            {expiry.month ? expiry.month : "XX"}
+            {expiry.month ? expiry.month : "XX"} /{" "}
+            {expiry.year ? expiry.year.slice(-2) : "XX"}
           </p>
           <p className="name">{name ? name : "YOUR NAME"}</p>
         </div>

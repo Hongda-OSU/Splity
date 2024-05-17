@@ -46,7 +46,7 @@
   user-select: none;
 }
 
-.text3 {
+.who-has-paid {
   width: fit-content;
   color: #000;
   font-family: "Montserrat", sans-serif;
@@ -54,6 +54,18 @@
   font-size: 0.9rem;
   font-weight: 600;
   letter-spacing: -0.5px;
-  margin-top: 2em;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  user-select: none;
+}
+
+.arrow {
+  width: fit-content;
+  color: #000;
+  font-family: "Montserrat", sans-serif;
+  line-height: 1;
+  font-size: 1rem;
+  font-weight: 600;
+  letter-spacing: -0.5px;
   user-select: none;
 }

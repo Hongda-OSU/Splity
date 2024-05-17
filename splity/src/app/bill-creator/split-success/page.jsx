@@ -1,22 +1,16 @@
 "use client";
-import { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { formatDate } from "@/helper/date";
+import { useMyStore } from "@/store/store";
 import { SuccessImage } from "@/helper/image";
+import { timeStampToDate } from "@/helper/date";
 import Stars from "@/components/stars/Stars";
 import styles from "./split-success.module.css";
 
 export default function SplitSuccess() {
-  const [sessionId, setSessionId] = useState("");
-  const [sessionCode, setSessionCode] = useState("");
-
-  const getNextFormattedTime = () => {
-    const today = new Date();
-    const tomorrow = new Date(today);
-    tomorrow.setDate(today.getDate() + 1);
-    return formatDate(tomorrow);
-  };
+  const { billCreator } = useMyStore((state) => ({
+    billCreator: state.billCreator,
+  }));
 
   return (
     <div className="flex justify-center items-center min-h-screen bg-black">
@@ -27,45 +21,46 @@ export default function SplitSuccess() {
           alt=""
           width={420}
           height={320}
-          className="mt-8 object-cover"
+          className="object-cover"
         />
         <h1 className={styles.text1}>Splity Success !</h1>
         <p className={styles.text2}>
-          Share your Session ID & Password with your friends
+          Share your Bill ID & Password with your friends
         </p>
         <div className="flex flex-col w-full max-w-xs mt-8">
-          <label htmlFor="session-id" className="text-sm font-bold mb-2">
-            Session ID <span className="text-red-500">*</span>
+          <label htmlFor="bill-id" className="text-sm font-bold mb-2">
+            Bill ID
           </label>
           <input
-            id="session-id"
+            id="bill-id"
             type="text"
-            value={sessionId}
-            onChange={(e) => {
-              setSessionId(e.target.value);
-              setError((prev) => ({ ...prev, id: false }));
-            }}
-            className="p-2 border rounded"
-            required
+            value={billCreator.bill_id}
+            className="text-sm font-bold p-3 border rounded outline-none"
+            readOnly
           />
-
-          <label htmlFor="session-code" className="text-sm font-bold mt-4 mb-2">
-            Session code <span className="text-red-500">*</span>
+          <label htmlFor="password" className="text-sm font-bold mt-4 mb-2">
+            Password
           </label>
           <input
-            id="session-code"
+            id="password"
             type="text"
-            value={sessionCode}
-            onChange={(e) => {
-              setSessionCode(e.target.value);
-              setError((prev) => ({ ...prev, code: false }));
-            }}
-            className="p-2 border rounded"
-            required
+            value={billCreator.password}
+            className="text-sm font-bold p-3 border rounded outline-none"
+            readOnly
+          />
+          <label htmlFor="resume-code" className="text-sm font-bold mt-4 mb-2">
+            Resume Code
+          </label>
+          <input
+            id="resume-code"
+            type="password"
+            value={billCreator.resume_code}
+            className="text-sm font-bold p-3 border rounded outline-none"
+            readOnly
           />
         </div>
         <p className="text-xs text-gray-600 my-8">
-          Session expired at {getNextFormattedTime()}
+          Bill expired at {timeStampToDate(billCreator.ttl)}
         </p>
         <Link href="/" className="w-full flex justify-center">
           <button className={styles.button}>
@@ -74,10 +69,11 @@ export default function SplitSuccess() {
         </Link>
         <Link
           href="/bill-creator/preview-payer"
-          className="w-full flex justify-center mt-12 mb-16"
+          className="w-full flex justify-center mt-8 mb-8"
         >
           <button className="w-full text-center rounded-lg">
-            <span className={styles.text3}>See who has paid →</span>
+            <span className={styles["who-has-paid"]}>See who has paid</span>{" "}
+            <span className={styles.arrow}>→</span>
           </button>
         </Link>
       </div>

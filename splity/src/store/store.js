@@ -20,10 +20,12 @@ export const useMyStore = create(
     billCreator: {
       bill_id: "",
       password: "",
+      resume_code: "",
       bill_creator: "",
       bill_total: "",
       total_members: "",
       bill_description: "",
+      ttl: "",
     },
     billPayer: {
       bill_id: "",

@@ -61,20 +61,6 @@ const PaymentForm = ({ type }) => {
   return (
     <form className="flex flex-col flex-grow" onSubmit={handleSubmit}>
       <div className="flex flex-col mb-4">
-        <label htmlFor="card-number" className="mb-2 text-base font-bold">
-          Card number
-        </label>
-        <input
-          id="card-number"
-          type="text"
-          placeholder="CARD NUMBER (16 digits)"
-          className="p-2 border rounded w-full text-sm outline-none"
-          onChange={handleCardNumber}
-          autoComplete="off"
-          required
-        />
-      </div>
-      <div className="flex flex-col mb-4">
         <label htmlFor="name" className="mb-2 text-base font-bold">
           Name
         </label>
@@ -84,7 +70,21 @@ const PaymentForm = ({ type }) => {
           placeholder="CARD HOLDER NAME"
           className="p-2 border rounded w-full text-sm"
           value={name}
-          onChange={handleInputChange(setName)}
+          onChange={(e) => setName(e.target.value)}
+          autoComplete="off"
+          required
+        />
+      </div>
+      <div className="flex flex-col mb-4">
+        <label htmlFor="card-number" className="mb-2 text-base font-bold">
+          Card number
+        </label>
+        <input
+          id="card-number"
+          type="text"
+          placeholder="CARD NUMBER (16 digits)"
+          className="p-2 border rounded w-full text-sm outline-none"
+          onChange={handleCardNumber}
           autoComplete="off"
           required
         />

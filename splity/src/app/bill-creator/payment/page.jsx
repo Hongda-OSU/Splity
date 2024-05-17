@@ -20,7 +20,7 @@ export default function Payment() {
               alt=""
               width={24}
               height={24}
-              className={styles.backimage}
+              className={styles["back-image"]}
             />
           </Link>
           <h1 className={styles.header}>Setup Payment</h1>
@@ -42,8 +42,8 @@ export default function Payment() {
                       className="m-auto py-2 object-cover"
                       src={src}
                       alt=""
-                      width={36}
-                      height={36}
+                      width="auto"
+                      height="auto"
                     />
                     <p className="text-xs flex-1 text-center font-bold">
                       {["Master Card", "Visa", "Union Pay"][index]}

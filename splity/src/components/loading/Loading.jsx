@@ -4,7 +4,7 @@ import "./Loading.css";
 
 const Loading = () => {
   return ReactDOM.createPortal(
-    <div className="container">
+    <div className="loading">
       <span className="loader"></span>
     </div>,
     document.body

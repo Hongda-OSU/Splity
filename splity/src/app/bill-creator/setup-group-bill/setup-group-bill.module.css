@@ -1,4 +1,4 @@
-.backimage {
+.back-image {
   position: absolute;
   top: 0;
   left: 0;
@@ -37,6 +37,6 @@
   line-height: 1;
   font-size: 0.95rem;
   font-weight: 600;
-  letter-spacing: -0.5px;
+  letter-spacing: -0.3px;
   user-select: none;
 }

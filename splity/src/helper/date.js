@@ -27,3 +27,16 @@ export const formatDate = (date) => {
   } ${ampm}`;
   return formattedTime;
 };
+
+export const timeStampToDate = (timestamp) => {
+  const date = new Date(timestamp * 1000);
+  const options = {
+    month: "long",
+    day: "numeric",
+    year: "numeric",
+    hour: "numeric",
+    minute: "numeric",
+    hour12: true,
+  };
+  return date.toLocaleDateString("en-US", options);
+};
