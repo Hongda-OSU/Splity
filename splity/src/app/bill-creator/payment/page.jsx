@@ -1,7 +1,12 @@
 import Link from "next/link";
 import Image from "next/image";
 import PaymentForm from "@/components/payment-form/PaymentForm";
-import { MasterCardImage, VisaImage2, UnionPayImage, BackImage } from "@/helper/image";
+import {
+  MasterCardImage,
+  VisaImage2,
+  UnionPayImage,
+  BackImage,
+} from "@/helper/image";
 import styles from "./payment.module.css";
 
 export default function Payment() {
@@ -27,25 +32,27 @@ export default function Payment() {
               Choose your payment method
             </p>
             <div className="grid grid-cols-3 gap-4 mt-4 mb-4">
-              {[MasterCardImage, VisaImage2, UnionPayImage].map((src, index) => (
-                <button
-                  key={index}
-                  className="border p-3 rounded-lg text-center flex flex-col items-center justify-center"
-                >
-                  <Image
-                    className="m-auto py-2 object-cover"
-                    src={src}
-                    alt=""
-                    width={36}
-                    height={36}
-                  />
-                  <p className="text-xs flex-1 text-center font-bold">
-                    {["Master Card", "Visa", "Union Pay"][index]}
-                  </p>
-                </button>
-              ))}
+              {[MasterCardImage, VisaImage2, UnionPayImage].map(
+                (src, index) => (
+                  <button
+                    key={index}
+                    className="border p-3 rounded-lg text-center flex flex-col items-center justify-center"
+                  >
+                    <Image
+                      className="m-auto py-2 object-cover"
+                      src={src}
+                      alt=""
+                      width={36}
+                      height={36}
+                    />
+                    <p className="text-xs flex-1 text-center font-bold">
+                      {["Master Card", "Visa", "Union Pay"][index]}
+                    </p>
+                  </button>
+                )
+              )}
             </div>
-            <PaymentForm action={"/bill-creator/setup-group-bill"} />
+            <PaymentForm type={"billCreator"} />
           </div>
         </div>
       </div>

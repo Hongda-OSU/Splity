@@ -9,12 +9,12 @@ const useWebSocket = (setPaymentHistory, setPaymentReceived) => {
       console.log("Connected to WebSocket");
     };
 
-    ws.onmessage = (e) => {
-      const message = JSON.parse(e.data);
+    ws.onmessage = (event) => {
+      const message = JSON.parse(event.data);
       if (message.action === "update") {
         const { payer, amount, date } = message.data;
         setPaymentHistory((prevHistory) => [...prevHistory, message.data]);
-        setPaymentReceived((prevTotal) => prevTotal + amount);
+        setPaymentReceived((prevPayment) => prevPayment + amount);
       }
     };
 

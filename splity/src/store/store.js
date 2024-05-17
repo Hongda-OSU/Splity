@@ -17,17 +17,25 @@ const logger = (config) => (set, get, api) =>
 
 export const useMyStore = create(
   logger((set) => ({
-    billCreator: {},
-    billPayer: {
+    billCreator: {
       bill_id: "",
       password: "",
       bill_creator: "",
+      bill_total: "",
+      total_members: "",
+      bill_description: "",
+    },
+    billPayer: {
+      bill_id: "",
+      bill_creator: "",
       bill_payer: "",
       bill_description: "",
-      bill_individual: "",
       bill_amount: "",
     },
-    setBillCreator: (billCreator) => set({ billCreator }),
+    setBillCreator: (billCreator) =>
+      set((state) => ({
+        billCreator: { ...state.billCreator, ...billCreator },
+      })),
     setBillPayer: (billPayer) =>
       set((state) => ({
         billPayer: { ...state.billPayer, ...billPayer },

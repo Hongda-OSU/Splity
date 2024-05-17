@@ -1,47 +1,65 @@
 "use client";
 import { useState } from "react";
+import { useMyStore } from "@/store/store";
+import { useRouter } from "next/navigation";
 import PaymentCard from "../payment-card/PaymentCard";
 import "./PaymentForm.css";
 
-const PaymentForm = ({action}) => {
-  const [cardNumber, setCardNumber] = useState("");
-  const [cardPlaceHolder, setCardPlaceHolder] = useState("XXXX XXXX XXXX XXXX");
+const PaymentForm = ({ type }) => {
+  const router = useRouter();
+  const { setBillPayer, setBillCreator } = useMyStore((state) => ({
+    setBillPayer: state.setBillPayer,
+    setBillCreator: state.setBillCreator,
+  }));
+
+  const [card_number, setCardNumber] = useState("XXXX XXXX XXXX XXXX");
   const [name, setName] = useState("");
   const [expiry, setExpiry] = useState({ month: "", year: "" });
   const [cvc, setCVC] = useState("");
 
-  const handleInputChange = (setter) => (event) => {
-    setter(event.target.value);
+  const handleInputChange = (setter) => (e) => {
+    setter(e.target.value);
   };
 
-  const handleCardPlaceholder = (event) => {
-    const input = event.target.value.replace(/\D/g, "");
-    let formattedInput = "";
+  const handleCardNumber = (e) => {
+    const input = e.target.value.replace(/\D/g, "");
+    let cardNumber = "";
 
     for (let i = 0; i < input.length; i++) {
       if (i > 0 && i % 4 === 0 && i < 16) {
-        formattedInput += " ";
+        cardNumber += " ";
       }
-      formattedInput += input[i];
+      cardNumber += input[i];
     }
 
-    while (formattedInput.length < 19) {
-      if ((formattedInput.length + 1) % 5 === 0 && formattedInput.length < 18) {
-        formattedInput += " ";
+    while (cardNumber.length < 19) {
+      if ((cardNumber.length + 1) % 5 === 0 && cardNumber.length < 18) {
+        cardNumber += " ";
       } else {
-        formattedInput += "X";
+        cardNumber += "X";
       }
     }
 
-    setCardPlaceHolder(formattedInput);
+    setCardNumber(cardNumber);
   };
 
-  const handleExpiryChange = (part) => (event) => {
-    setExpiry({ ...expiry, [part]: event.target.value });
+  const handleExpiryChange = (part) => (e) => {
+    setExpiry({ ...expiry, [part]: e.target.value });
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    if (type === "billPayer") {
+      setBillPayer({ bill_payer: name });
+      router.push("/bill-payer/confirm-payment");
+    } else if (type === "billCreator") {
+      setBillCreator({ bill_creator: name });
+      router.push("/bill-creator/setup-group-bill");
+    }
   };
 
   return (
-    <form action={action} className="flex flex-col flex-grow">
+    <form className="flex flex-col flex-grow" onSubmit={handleSubmit}>
       <div className="flex flex-col mb-4">
         <label htmlFor="card-number" className="mb-2 text-base font-bold">
           Card number
@@ -51,7 +69,7 @@ const PaymentForm = ({action}) => {
           type="text"
           placeholder="CARD NUMBER (16 digits)"
           className="p-2 border rounded w-full text-sm outline-none"
-          onChange={handleCardPlaceholder}
+          onChange={handleCardNumber}
           autoComplete="off"
           required
         />
@@ -125,7 +143,7 @@ const PaymentForm = ({action}) => {
         </div>
       </div>
       <PaymentCard
-        cardPlaceHolder={cardPlaceHolder}
+        card_number={card_number}
         name={name}
         expiry={expiry}
         cvc={cvc}

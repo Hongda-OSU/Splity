@@ -7,7 +7,7 @@ const PreviewItem = ({ payer }) => {
     <div className="preview-item">
       <Image src={CashImage} alt="" className="preview-image" priority={true} />
       <p className="preview-text">{payer.payer}</p>
-      <p className="preview-text">${payer.amount.toFixed(1)}</p>
+      <p className="preview-text">${payer.amount.toFixed(2)}</p>
     </div>
   );
 };

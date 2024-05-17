@@ -56,7 +56,7 @@ const PreviewPayer = () => {
             ))}
           </div>
           <p className={styles["receive-total"]}>
-            You have received ${paymentReceived.toFixed(1)} from your friends
+            You have received ${paymentReceived.toFixed(2)} from your friends
           </p>
           <Link href="/" className={styles.link}>
             <button className={styles.button}>

@@ -7,13 +7,15 @@ import useAxios from "@/helper/useAxios";
 import dynamic from "next/dynamic";
 import "./Authenticator.css";
 
-const Authenticator = ({ back }) => {
-  const Loading = dynamic(() => import("../loading/Loading"), {
-    ssr: false,
-  });
+const Loading = dynamic(() => import("../loading/Loading"), {
+  ssr: false,
+});
 
+const Authenticator = ({ back }) => {
   const router = useRouter();
-  const setBillPayer = useMyStore((state) => state.setBillPayer);
+  const { setBillPayer } = useMyStore((state) => ({
+    setBillPayer: state.setBillPayer,
+  }));
   const { loading, error, fetchData } = useAxios(authenticate, "POST");
   const [bill_id, setBillId] = useState("");
   const [password, setPassword] = useState("");
@@ -26,10 +28,9 @@ const Authenticator = ({ back }) => {
       const { bill_creator, bill_description, bill_individual } = data;
       setBillPayer({
         bill_id,
-        password,
         bill_creator,
         bill_description,
-        bill_individual,
+        bill_amount: bill_individual,
       });
       router.push("/bill-payer/payment");
     }
@@ -76,9 +77,10 @@ const Authenticator = ({ back }) => {
             </button>
             <button
               type="submit"
+              disabled={loading}
               className="bg-black text-white text-sm py-2 px-4 rounded"
             >
-              {loading ? "Loading..." : "Enter"}
+              {loading ? "Entering..." : "Enter"}
             </button>
           </div>
         </form>

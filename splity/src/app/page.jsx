@@ -59,7 +59,6 @@ export default function Home() {
                     <span className={styles["button-text"]}>Start a Split</span>
                   </button>
                 </Link>
-
                 <button
                   className={styles.button}
                   onClick={() => setAuthenticator(true)}

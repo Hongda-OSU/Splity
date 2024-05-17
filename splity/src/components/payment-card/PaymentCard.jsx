@@ -1,6 +1,6 @@
 import "./PaymentCard.css";
 
-const PaymentCard = ({ cardPlaceHolder, name, expiry, cvc }) => {
+const PaymentCard = ({ card_number, name, expiry, cvc }) => {
   return (
     <div className="flip-card">
       <div className="flip-card-inner">
@@ -109,7 +109,7 @@ const PaymentCard = ({ cardPlaceHolder, name, expiry, cvc }) => {
               MDowMIXeN6gAAAAASUVORK5CYII="
             ></image>
           </svg>
-          <p className="number">{cardPlaceHolder}</p>
+          <p className="number">{card_number}</p>
           <p className="valid_thru">VALID THRU</p>
           <p className="date_8264">
             {expiry.year ? expiry.year.slice(-2) : "XX"} /{" "}
