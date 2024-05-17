@@ -21,6 +21,10 @@ def generate_bill_id(dynamodb):
             return bill_id
 
 
+def generate_resume_code():
+    return str(random.randint(100000, 999999))
+
+
 def lambda_handler(event, context):
     dynamodb = boto3.resource("dynamodb")
     table = dynamodb.Table("GroupBill")
@@ -69,6 +73,7 @@ def lambda_handler(event, context):
     ttl = int(time.time()) + 86400
 
     bill_id = generate_bill_id(dynamodb)
+    resume_code = generate_resume_code()
 
     try:
         table.put_item(
@@ -80,6 +85,7 @@ def lambda_handler(event, context):
                 "total_members": total_members,
                 "bill_description": bill_description,
                 "password": password,
+                "resume_code": resume_code,
                 "history": history,
                 "ttl": ttl,
             }
@@ -88,7 +94,12 @@ def lambda_handler(event, context):
             "statusCode": 200,
             "headers": headers,
             "body": json.dumps(
-                {"message": "Bill created", "bill_id": bill_id},
+                {
+                    "message": "Bill created",
+                    "bill_id": bill_id,
+                    "resume_code": resume_code,
+                    "ttl": ttl,
+                },
                 cls=DecimalEncoder,
             ),
         }
