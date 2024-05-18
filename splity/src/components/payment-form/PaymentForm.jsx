@@ -71,7 +71,6 @@ const PaymentForm = ({ type }) => {
           className="p-2 border rounded w-full text-sm"
           value={name}
           onChange={(e) => setName(e.target.value)}
-          autoComplete="off"
           required
         />
       </div>
@@ -85,7 +84,6 @@ const PaymentForm = ({ type }) => {
           placeholder="CARD NUMBER (16 digits)"
           className="p-2 border rounded w-full text-sm outline-none"
           onChange={handleCardNumber}
-          autoComplete="off"
           required
         />
       </div>

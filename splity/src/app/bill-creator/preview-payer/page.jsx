@@ -5,6 +5,7 @@ import Image from "next/image";
 import Link from "next/link";
 import useFetch from "@/helper/useFetch";
 import useWebSocket from "@/helper/useWebsocket";
+import { useMyStore } from "@/store/store";
 import PreviewItem from "@/components/preview-item/PreviewItem";
 import { PreviewPayerImage } from "@/helper/image";
 import { query_payment_history } from "@/helper/api";
@@ -15,8 +16,12 @@ const Loading = dynamic(() => import("@/components/loading/Loading"), {
 });
 
 const PreviewPayer = () => {
+  const { billCreator } = useMyStore((state) => ({
+    billCreator: state.billCreator,
+  }));
+
   const { data, loading, error } = useFetch(
-    `${query_payment_history}?bill_id=7300`
+    `${query_payment_history}?bill_id=${billCreator.bill_id}`
   );
 
   const [paymentHistory, setPaymentHistory] = useState([]);
@@ -58,7 +63,7 @@ const PreviewPayer = () => {
           <p className={styles["receive-total"]}>
             You have received ${paymentReceived.toFixed(2)} from your friends
           </p>
-          <Link href="/" className={styles.link}>
+          <Link href="/bill-creator/split-success" className={styles.link}>
             <button className={styles.button}>
               <span className={styles["button-text"]}>Return</span>
             </button>

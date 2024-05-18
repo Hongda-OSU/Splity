@@ -1,4 +1,5 @@
 import { create } from "zustand";
+import { persist, createJSONStorage } from "zustand/middleware";
 
 const logger = (config) => (set, get, api) =>
   config(
@@ -16,31 +17,39 @@ const logger = (config) => (set, get, api) =>
   );
 
 export const useMyStore = create(
-  logger((set) => ({
-    billCreator: {
-      bill_id: "",
-      password: "",
-      resume_code: "",
-      bill_creator: "",
-      bill_total: "",
-      total_members: "",
-      bill_description: "",
-      ttl: "",
-    },
-    billPayer: {
-      bill_id: "",
-      bill_creator: "",
-      bill_payer: "",
-      bill_description: "",
-      bill_amount: "",
-    },
-    setBillCreator: (billCreator) =>
-      set((state) => ({
-        billCreator: { ...state.billCreator, ...billCreator },
-      })),
-    setBillPayer: (billPayer) =>
-      set((state) => ({
-        billPayer: { ...state.billPayer, ...billPayer },
-      })),
-  }))
+  logger(
+    persist(
+      (set) => ({
+        billCreator: {
+          bill_id: "",
+          password: "",
+          resume_code: "",
+          bill_creator: "",
+          bill_total: "",
+          total_members: "",
+          bill_description: "",
+          ttl: "",
+        },
+        billPayer: {
+          bill_id: "",
+          bill_creator: "",
+          bill_payer: "",
+          bill_description: "",
+          bill_amount: "",
+        },
+        setBillCreator: (billCreator) =>
+          set((state) => ({
+            billCreator: { ...state.billCreator, ...billCreator },
+          })),
+        setBillPayer: (billPayer) =>
+          set((state) => ({
+            billPayer: { ...state.billPayer, ...billPayer },
+          })),
+      }),
+      {
+        name: "splity-storage",
+        storage: createJSONStorage(() => sessionStorage),
+      }
+    )
+  )
 );
