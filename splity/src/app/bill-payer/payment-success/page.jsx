@@ -36,7 +36,7 @@ const PaymentSuccess = () => {
             {billPayer.bill_payer || "Hongda Lin"}
           </p>
           <p className={styles["bill-amount"]}>
-            ${billPayer.bill_amount || "20.00"}
+            $ {billPayer.bill_amount || "20.00"}
           </p>
           <p className={styles["bill-description"]}>
             {billPayer.bill_description || "Tuesday lunch"}
@@ -44,7 +44,7 @@ const PaymentSuccess = () => {
           <p className={styles.date}>{getCurrentFormattedTime()}</p>
           <Link href="/" className={styles.link}>
             <button className={styles.button}>
-              <span className={styles["button-text"]}>Return</span>
+              <span className={styles["button-text"]}>Back to Home</span>
             </button>
           </Link>
         </div>

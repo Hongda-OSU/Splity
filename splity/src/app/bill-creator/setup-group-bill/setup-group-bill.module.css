@@ -1,8 +1,14 @@
+#wrapper {
+  opacity: 0;
+  animation: fadeIn 0.8s ease 0.3s forwards;
+}
+
 .back-image {
   position: absolute;
-  top: 0;
   left: 0;
+  bottom: -4px;
   margin-left: 2em;
+  object-fit: cover;
 }
 
 .header {
@@ -39,4 +45,13 @@
   font-weight: 600;
   letter-spacing: -0.3px;
   user-select: none;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
 }

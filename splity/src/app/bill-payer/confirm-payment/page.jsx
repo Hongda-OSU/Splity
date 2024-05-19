@@ -47,14 +47,17 @@ export default function ConfirmPayment() {
             <Image
               src={BackImage}
               alt=""
-              width={24}
-              height={24}
+              width={28}
+              height={28}
               className={styles["back-image"]}
             />
           </Link>
           <h1 className={styles.header}>Confirm Payment</h1>
         </div>
-        <div className="flex flex-col items-center flex-grow">
+        <div
+          className="flex flex-col items-center flex-grow"
+          id={styles.wrapper}
+        >
           <Image
             src={ExchangeImage}
             alt=""
@@ -62,14 +65,10 @@ export default function ConfirmPayment() {
             height={300}
             className="mt-16"
           />
-          <p className={styles["bill-payer"]}>
-            {billPayer.bill_payer || "Hongda Lin"}
-          </p>
-          <p className={styles["bill_amount"]}>
-            $ {billPayer.bill_amount || "20.00"}
-          </p>
+          <p className={styles["bill-payer"]}>{billPayer.bill_payer}</p>
+          <p className={styles["bill_amount"]}>$ {billPayer.bill_amount}</p>
           <p className={styles["bill-description"]}>
-            {billPayer.bill_description || "Tuesday lunch"}
+            {billPayer.bill_description}
           </p>
           <p className={styles.date}>{getCurrentFormattedTime()}</p>
           <button

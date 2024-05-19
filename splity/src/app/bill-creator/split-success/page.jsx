@@ -21,20 +21,20 @@ export default function SplitSuccess() {
 
   return (
     <div className="flex justify-center items-center min-h-screen bg-black">
-      <div className="relative flex flex-col items-center w-[430px] min-h-screen bg-white p-5">
+      <div className="relative flex flex-col items-center w-[430px] min-h-screen bg-white p-5 pt-3">
         <Stars />
         <Image
           src={SuccessImage}
           alt=""
           width={420}
           height={320}
-          className="object-cover"
+          className={styles["success-image"]}
         />
         <h1 className={styles["splity-success"]}>Splity Success !</h1>
-        <p className={styles.text2}>
+        <p className={styles.subtitle}>
           Share your Bill ID & Password with your friends
         </p>
-        <div className="flex flex-col w-full max-w-xs mt-8">
+        <div className="flex flex-col w-full max-w-xs mt-8" id={styles.wrapper}>
           <label htmlFor="bill-id" className="text-sm font-bold mb-2">
             Bill ID <span className="text-red-500">*</span>
           </label>
@@ -80,16 +80,16 @@ export default function SplitSuccess() {
             </span>
           </div>
         </div>
-        <p className="text-xs text-gray-600 my-8">
+        <p className="text-xs text-gray-600 my-8" id={styles.wrapper2}>
           Bill expired at {timeStampToDate(billCreator.ttl)}
         </p>
         <Link href="/" className="w-full flex justify-center">
           <button className={styles.button}>
-            <span className={styles["button-text"]}>Return</span>
+            <span className={styles["button-text"]}>Back to Home</span>
           </button>
         </Link>
         <Link
-          href="/bill-creator/preview-payer"
+          href="/bill-creator/preview-bill"
           className="w-full flex justify-center mt-8 mb-8"
         >
           <button className="w-full text-center rounded-lg">

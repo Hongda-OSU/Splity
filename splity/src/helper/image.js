@@ -5,7 +5,7 @@ import CashImage from "../../public/images/money-payments-accounting-bill-money-
 import MasterCardImage from "../../public/images/mastercard.svg";
 import VisaImage from "../../public/images/visa.svg";
 import UnionPayImage from "../../public/images/unionpay.svg";
-import BackImage from "../../public/images/back.png";
+import BackImage from "../../public/images/ni-chevron-left-circle.png";
 import ExchangeImage from "../../public/images/Currency-Exchange.png";
 import SuccessImage from "../../public/images/Success.png";
 import PreviewPayerImage from "../../public/images/Consult-Experts.png";

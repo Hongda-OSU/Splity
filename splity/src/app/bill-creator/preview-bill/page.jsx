@@ -6,16 +6,18 @@ import Link from "next/link";
 import useFetch from "@/helper/useFetch";
 import useWebSocket from "@/helper/useWebsocket";
 import { useMyStore } from "@/store/store";
-import PreviewItem from "@/components/preview-item/PreviewItem";
 import { PreviewPayerImage } from "@/helper/image";
 import { query_payment_history } from "@/helper/api";
-import styles from "./preview-payer.module.css";
+import PreviewItem from "@/components/preview-item/PreviewItem";
+import AOS from "aos";
+import "aos/dist/aos.css";
+import styles from "./preview-bill.module.css";
 
 const Loading = dynamic(() => import("@/components/loading/Loading"), {
   ssr: false,
 });
 
-const PreviewPayer = () => {
+const PreviewBill = () => {
   const { billCreator } = useMyStore((state) => ({
     billCreator: state.billCreator,
   }));
@@ -40,6 +42,11 @@ const PreviewPayer = () => {
   }, [data]);
 
   useWebSocket(setPaymentHistory, setPaymentReceived);
+
+  useEffect(() => {
+    AOS.init({ duration: 1200, offset: 50 });
+    AOS.refresh();
+  }, []);
 
   return (
     <section className={styles.container}>
@@ -75,4 +82,4 @@ const PreviewPayer = () => {
   );
 };
 
-export default PreviewPayer;
+export default PreviewBill;

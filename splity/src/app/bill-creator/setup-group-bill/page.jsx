@@ -69,14 +69,14 @@ export default function SetupGroupBill() {
             <Image
               src={BackImage}
               alt=""
-              width={24}
-              height={24}
+              width={28}
+              height={28}
               className={styles["back-image"]}
             />
           </Link>
-          <h1 className={styles.header}>Setup Payment</h1>
+          <h1 className={styles.header}>Setup Group Bill</h1>
         </div>
-        <div className="flex flex-col flex-grow p-8 mt-6">
+        <div className="flex flex-col flex-grow p-8 mt-6" id={styles.wrapper}>
           <div>
             <h1 className="text-base font-bold">Group Bill Information</h1>
             <p className="text-xs mb-4 text-slate-500">

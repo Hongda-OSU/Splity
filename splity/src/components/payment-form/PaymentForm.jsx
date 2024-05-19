@@ -61,13 +61,13 @@ const PaymentForm = ({ type }) => {
   return (
     <form className="flex flex-col flex-grow" onSubmit={handleSubmit}>
       <div className="flex flex-col mb-4">
-        <label htmlFor="name" className="mb-2 text-base font-bold">
+        <label htmlFor="name" className="mb-2 text-sm font-bold">
           Name
         </label>
         <input
           id="name"
           type="text"
-          placeholder="CARD HOLDER NAME"
+          placeholder="Card holder name"
           className="p-2 border rounded w-full text-sm"
           value={name}
           onChange={(e) => setName(e.target.value)}
@@ -75,23 +75,22 @@ const PaymentForm = ({ type }) => {
         />
       </div>
       <div className="flex flex-col mb-4">
-        <label htmlFor="card-number" className="mb-2 text-base font-bold">
+        <label htmlFor="card-number" className="mb-2 text-sm font-bold">
           Card number
         </label>
         <input
           id="card-number"
           type="text"
-          placeholder="CARD NUMBER (16 digits)"
+          placeholder="Card number (16 digits)"
           className="p-2 border rounded w-full text-sm outline-none"
           onChange={handleCardNumber}
           required
         />
       </div>
       <div className="flex flex-col">
-        <label htmlFor="expires-month" className="mb-1 text-base font-bold">
+        <label htmlFor="expires-month" className="mb-2 text-sm font-bold">
           Card Info
         </label>
-        <p className="text-xs mb-2 ml-0.5 text-slate-500">EXPIRY & CVC</p>
         <div className="flex flex-row gap-2">
           <select
             id="expires-month"
