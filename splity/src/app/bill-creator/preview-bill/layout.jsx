@@ -1,8 +1,8 @@
 export const metadata = {
-  title: "Splity • Preview Payer",
+  title: "Splity • Preview Bill",
   description: "",
 };
 
-export default function PreviewPayerLayout({ children }) {
+export default function PreviewBillLayout({ children }) {
   return <>{children}</>;
 }

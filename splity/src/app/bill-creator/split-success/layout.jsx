@@ -1,5 +1,5 @@
 export const metadata = {
-    title: "Splity • Split Success",
+    title: "Splity • Splity Success",
     description: "",
   };
   
