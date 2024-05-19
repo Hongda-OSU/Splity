@@ -5,8 +5,8 @@ import Image from "next/image";
 import ResumeAuth from "@/components/resume-auth/ResumeAuth";
 import Authenticator from "@/components/authenticator/Authenticator";
 import { IconImage, PartyFaceImage } from "@/helper/image";
-import AOS from "aos";
-import "aos/dist/aos.css";
+import AOS from 'aos';
+import 'aos/dist/aos.css'
 import styles from "./home.module.css";
 
 export default function Home() {
