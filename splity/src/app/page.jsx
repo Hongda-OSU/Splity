@@ -2,22 +2,40 @@
 import { useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
+import ResumeAuth from "@/components/resume-auth/ResumeAuth";
 import Authenticator from "@/components/authenticator/Authenticator";
-import {
-  IconImage,
-  BurgerImage,
-  CreditCardImage,
-  PartyFaceImage,
-} from "@/helper/image";
+import { IconImage, PartyFaceImage } from "@/helper/image";
 import styles from "./home.module.css";
 
 export default function Home() {
   const [authenticator, setAuthenticator] = useState(false);
+  const [resumeAuth, setResumeAuth] = useState(false);
+
+  const buttons = () => {
+    return (
+      <div className="flex flex-col w-full">
+        <Link href="/bill-creator/payment">
+          <button className={styles.button}>
+            <span className={styles["button-text"]}>Split a bill</span>
+          </button>
+        </Link>
+        <button className={styles.button} onClick={() => setAuthenticator(true)}>
+          <span className={styles["button-text"]}>Join a bill</span>
+        </button>
+        <button className={styles.button} onClick={() => setResumeAuth(true)}>
+          <span className={styles["button-text"]}>Resume a bill</span>
+        </button>
+      </div>
+    );
+  };
 
   return (
     <main className="flex min-h-screen">
-      <div className="relative w-full bg-white">
-        <div className="flex min-h-screen flex-col bg-black text-white w-[430px] p-20 px-10 m-auto">
+      <div className="relative w-full bg-black">
+        <div
+          className="flex min-h-screen flex-col bg-black text-white w-[430px] p-20 px-9 m-auto"
+          id={styles.container}
+        >
           <div className="flex flex-grow flex-col justify-between w-full">
             <div>
               <section className="flex flex-row mb-4">
@@ -43,36 +61,12 @@ export default function Home() {
                 />
               </section>
             </div>
-            {authenticator ? (
+            {resumeAuth ? (
+              <ResumeAuth back={() => setResumeAuth(false)} />
+            ) : authenticator ? (
               <Authenticator back={() => setAuthenticator(false)} />
             ) : (
-              <div className="flex flex-col w-full">
-                <Link href="/bill-creator/payment">
-                  <button className={styles.button}>
-                    <Image
-                      src={BurgerImage}
-                      alt=""
-                      width="auto"
-                      height="auto"
-                      className={styles["button-icon"]}
-                    />
-                    <span className={styles["button-text"]}>Start a Split</span>
-                  </button>
-                </Link>
-                <button
-                  className={styles.button}
-                  onClick={() => setAuthenticator(true)}
-                >
-                  <Image
-                    src={CreditCardImage}
-                    alt=""
-                    width="auto"
-                    height="auto"
-                    className={styles["button-icon"]}
-                  />
-                  <span className={styles["button-text"]}>Join a Bill</span>
-                </button>
-              </div>
+              buttons()
             )}
           </div>
         </div>

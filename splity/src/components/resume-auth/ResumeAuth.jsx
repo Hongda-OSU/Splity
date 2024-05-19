@@ -1,38 +1,38 @@
 "use client";
 import { useState } from "react";
 import { useMyStore } from "@/store/store";
-import { authenticate } from "@/helper/api";
+import { resume_bill } from "@/helper/api";
 import { useRouter } from "next/navigation";
 import useAxios from "@/helper/useAxios";
 import dynamic from "next/dynamic";
-import "./Authenticator.css";
+import "./ResumeAuth.css";
 
 const Loading = dynamic(() => import("../loading/Loading"), {
   ssr: false,
 });
 
-const Authenticator = ({ back }) => {
+const ResumeAuth = ({ back }) => {
   const router = useRouter();
-  const { setBillPayer } = useMyStore((state) => ({
-    setBillPayer: state.setBillPayer,
+  const { setBillCreator } = useMyStore((state) => ({
+    setBillCreator: state.setBillCreator,
   }));
-  const { loading, error, fetchData } = useAxios(authenticate, "POST");
+  const { loading, error, fetchData } = useAxios(resume_bill, "POST");
   const [bill_id, setBillId] = useState("");
-  const [password, setPassword] = useState("");
+  const [resume_code, setResumeCode] = useState("");
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const data = await fetchData({ bill_id, password });
+    const data = await fetchData({ bill_id, resume_code });
 
     if (data) {
-      const { bill_creator, bill_description, bill_individual } = data;
-      setBillPayer({
+      const { password, ttl } = data;
+      setBillCreator({
         bill_id,
-        bill_creator,
-        bill_description,
-        bill_amount: bill_individual,
+        resume_code,
+        password,
+        ttl,
       });
-      router.push("/bill-payer/payment");
+      router.push("/bill-creator/split-success");
     }
   };
 
@@ -40,9 +40,9 @@ const Authenticator = ({ back }) => {
     <div className="flex flex-col items-center w-full" id="authenticator">
       <div className="bg-white text-black rounded-lg p-6 w-full">
         <form className="flex flex-col" onSubmit={handleSubmit}>
-          <h2 className="text-lg font-semibold mb-2">Join a Bill</h2>
+          <h2 className="text-lg font-semibold mb-2">Resume a Bill</h2>
           <p className="text-sm mb-4 text-slate-500">
-            Enter Bill ID and Password from your friend in order to join a bill.
+            Enter Bill ID and Resume Code in order to resume to a previous bill.
           </p>
           {loading && <Loading />}
           <label htmlFor="bill-id" className="text-sm mb-2 font-medium">
@@ -56,16 +56,16 @@ const Authenticator = ({ back }) => {
             value={bill_id}
             onChange={(e) => setBillId(e.target.value)}
           />
-          <label htmlFor="password" className="text-sm mb-2 font-medium">
-            Password
+          <label htmlFor="resume_code" className="text-sm mb-2 font-medium">
+            Resume Code
           </label>
           <input
-            id="password"
+            id="resume_code"
             type="text"
             className="mb-8 p-2 border border-slate-300 rounded bg-slate-100 placeholder-slate-400 text-sm"
-            placeholder="Enter Password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
+            placeholder="Enter resume code"
+            value={resume_code}
+            onChange={(e) => setResumeCode(e.target.value)}
           />
           <div className="flex justify-between">
             <button
@@ -80,7 +80,7 @@ const Authenticator = ({ back }) => {
               disabled={loading}
               className="bg-black text-white text-sm py-2 px-4 rounded"
             >
-              {loading ? "Joining..." : "Join"}
+              {loading ? "Resuming..." : "Resume"}
             </button>
           </div>
         </form>
@@ -89,4 +89,4 @@ const Authenticator = ({ back }) => {
   );
 };
 
-export default Authenticator;
+export default ResumeAuth;
