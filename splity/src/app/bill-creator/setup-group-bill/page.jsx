@@ -1,5 +1,5 @@
 "use client";
-import { useState } from "react";
+import React, { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import dynamic from "next/dynamic";
@@ -9,6 +9,7 @@ import { useMyStore } from "@/store/store";
 import { useRouter } from "next/navigation";
 import { BackImage } from "@/helper/image";
 import styles from "./setup-group-bill.module.css";
+import GroupForm from "@/components/group-form/GroupForm";
 
 const Loading = dynamic(() => import("@/components/loading/Loading"), {
   ssr: false,
@@ -20,14 +21,34 @@ export default function SetupGroupBill() {
     billCreator: state.billCreator,
     setBillCreator: state.setBillCreator,
   }));
-  const { loading, error, fetchData } = useAxios(create_bill, "POST");
+  const { loading, fetchData } = useAxios(create_bill, "POST");
 
   const [total_members, setTotalMembers] = useState("");
   const [bill_total, setBillTotal] = useState("");
   const [bill_description, setBillDescription] = useState("");
   const [password, setPassword] = useState("");
 
-  const handleInputChange = (setter) => (e) => setter(e.target.value);
+  // const handleInputChange = (setter) => (e) => setter(e.target.value);
+
+  const handleInputChange = (fieldName, event) => {
+    const { value } = event.target;
+    switch (fieldName) {
+      case "total_members":
+        setTotalMembers(value);
+        break;
+      case "bill_total":
+        setBillTotal(value);
+        break;
+      case "bill_description":
+        setBillDescription(value);
+        break;
+      case "password":
+        setPassword(value);
+        break;
+      default:
+        break;
+    }
+  };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -77,79 +98,15 @@ export default function SetupGroupBill() {
           <h1 className={styles.header}>Setup Group Bill</h1>
         </div>
         <div className="flex flex-col flex-grow p-8 mt-6" id={styles.wrapper}>
-          <div>
-            <h1 className="text-base font-bold text-black">Group Bill Information</h1>
-            <p className="text-xs mb-4 text-slate-500">
-              Splity will use these information to generate a group bill.
-            </p>
-          </div>
-          <form
-            className="flex flex-col flex-grow mt-4 text-black"
-            onSubmit={handleSubmit}
-          >
-            <div className="flex flex-col mb-4">
-              <label htmlFor="people" className="mb-2 font-bold text-sm">
-                People
-              </label>
-              <input
-                id="people"
-                type="text"
-                placeholder="Number of people"
-                value={total_members}
-                className="p-2 border rounded w-full text-sm bg-white placeholder-slate-400 border-slate-300"
-                onChange={handleInputChange(setTotalMembers)}
-                required
-              />
-            </div>
-            <div className="flex flex-col mb-4">
-              <label htmlFor="price" className="mb-2 font-bold text-sm">
-                Price
-              </label>
-              <input
-                id="price"
-                type="text"
-                placeholder="Total price"
-                value={bill_total}
-                className="p-2 border rounded w-full text-sm bg-white placeholder-slate-400 border-slate-300"
-                onChange={handleInputChange(setBillTotal)}
-                required
-              />
-            </div>
-            <div className="flex flex-col mb-4">
-              <label
-                htmlFor="bill-description"
-                className="mb-2 font-bold text-sm"
-              >
-                Bill Description
-              </label>
-              <input
-                id="bill-description"
-                type="text"
-                value={bill_description}
-                placeholder="Bill description"
-                className="p-2 border rounded w-full text-sm bg-white placeholder-slate-400 border-slate-300"
-                onChange={handleInputChange(setBillDescription)}
-                required
-              />
-            </div>
-            <div className="flex flex-col mb-8">
-              <label htmlFor="password" className="mb-2 font-bold text-sm">
-                Password
-              </label>
-              <input
-                id="password"
-                type="text"
-                value={password}
-                placeholder="Password"
-                className="p-2 border rounded w-full text-sm bg-white placeholder-slate-400 border-slate-300"
-                onChange={handleInputChange(setPassword)}
-                required
-              />
-            </div>
-            <button className={styles.button} type="submit" disabled={loading}>
-              <span className={styles["button-text"]}>Let&apos;s Splity</span>
-            </button>
-          </form>
+          <GroupForm
+            handleSubmit={handleSubmit}
+            handleInputChange={handleInputChange}
+            total_members={total_members}
+            bill_total={bill_total}
+            bill_description={bill_description}
+            password={password}
+            loading={loading}
+          />
         </div>
       </div>
     </main>

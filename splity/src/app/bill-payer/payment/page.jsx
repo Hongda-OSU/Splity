@@ -34,11 +34,11 @@ export default function Payment() {
           id={styles.wrapper}
         >
           <div>
-            <h1 className="text-base font-bold">Payment Method</h1>
+          <h1 className="text-base font-bold text-black">Payment Method</h1>
             <p className="text-xs mb-4 text-slate-500">
               Choose your payment method
             </p>
-            <div className="grid grid-cols-3 gap-4 mt-4 mb-4">
+            <div className="grid grid-cols-3 gap-4 mt-4 mb-4 text-black">
               {[MasterCardImage, VisaImage, UnionPayImage].map((src, index) => (
                 <button
                   key={index}

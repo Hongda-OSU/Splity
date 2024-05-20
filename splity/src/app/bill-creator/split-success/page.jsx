@@ -34,7 +34,7 @@ export default function SplitSuccess() {
         <p className={styles.subtitle}>
           Share your Bill ID & Password with your friends
         </p>
-        <div className="flex flex-col w-full max-w-xs mt-8" id={styles.wrapper}>
+        <div className="flex flex-col w-full max-w-xs mt-8 text-black" id={styles.wrapper}>
           <label htmlFor="bill-id" className="text-sm font-bold mb-2">
             Bill ID <span className="text-red-500">*</span>
           </label>
@@ -42,7 +42,7 @@ export default function SplitSuccess() {
             id="bill-id"
             type="text"
             value={billCreator.bill_id}
-            className="text-sm font-bold p-3 border rounded outline-none"
+            className="text-sm font-bold p-3 border rounded outline-none bg-white border-slate-300"
             readOnly
           />
           <label htmlFor="password" className="text-sm font-bold mt-4 mb-2">
@@ -52,7 +52,7 @@ export default function SplitSuccess() {
             id="password"
             type="text"
             value={billCreator.password}
-            className="text-sm font-bold p-3 border rounded outline-none"
+            className="text-sm font-bold p-3 border rounded outline-none bg-white border-slate-300"
             readOnly
           />
           <label htmlFor="resume-code" className="text-sm font-bold mt-4 mb-2">
@@ -63,7 +63,7 @@ export default function SplitSuccess() {
               id="resume-code"
               type={showResumeCode ? "text" : "password"}
               value={billCreator.resume_code}
-              className="block w-full text-sm font-bold p-3 border rounded outline-none"
+              className="block w-full text-sm font-bold p-3 border rounded outline-none bg-white border-slate-300"
               readOnly
             />
             <span
