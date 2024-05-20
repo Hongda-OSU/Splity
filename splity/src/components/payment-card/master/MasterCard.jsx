@@ -1,6 +1,6 @@
-import "./PaymentCard.css";
+import "./MasterCard.css";
 
-const PaymentCard = ({ card_number, name, expiry, cvc }) => {
+const MasterCard = ({ card_number, name, expiry, cvc }) => {
   return (
     <div className="flip-card">
       <div className="flip-card-inner">
@@ -129,4 +129,4 @@ const PaymentCard = ({ card_number, name, expiry, cvc }) => {
   );
 };
 
-export default PaymentCard;
+export default MasterCard;
