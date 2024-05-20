@@ -3,7 +3,7 @@
   width: 240px;
   height: 154px;
   perspective: 1000px;
-  color: white;
+  color: #fff;
   margin: 0 auto;
   margin-top: 4.5em;
   margin-bottom: 1em;
@@ -15,7 +15,8 @@
   letter-spacing: 0.2em;
   font-size: 0.5em;
   top: 2em;
-  left: 18.6em;
+  right: 0;
+  margin-right: 3em;
 }
 
 .logo {
@@ -140,7 +141,7 @@
 .flip-card-front {
   box-shadow: rgba(0, 0, 0, 0.4) 0px 2px 2px,
     rgba(0, 0, 0, 0.3) 0px 7px 13px -3px, rgba(0, 0, 0, 0.2) 0px -1px 0px inset;
-  /* background: linear-gradient(135deg, #edcb78, #f7e4b2, #fee08b); */
+
   background-color: #171717;
 }
 
@@ -149,4 +150,50 @@
     rgba(0, 0, 0, 0.3) 0px 7px 13px -3px, rgba(0, 0, 0, 0.2) 0px -1px 0px inset;
   background-color: #171717;
   transform: rotateY(180deg);
+}
+
+.Visa {
+  background: linear-gradient(135deg, #edcb78, #f7e4b2, #fee08b);
+}
+
+.UnionPay {
+  background: linear-gradient(135deg, #c0c0c0, #d3d3d3, #e5e5e5);
+}
+
+.Visa_strip {
+  background: repeating-linear-gradient(
+    45deg,
+    #edcb78,
+    #edcb78 10px,
+    #fee08b 10px,
+    #fee08b 20px
+  );
+}
+
+.UnionPay_strip {
+  background: repeating-linear-gradient(
+    45deg,
+    #c0c0c0,
+    #c0c0c0 10px,
+    #e5e5e5 10px,
+    #e5e5e5 20px
+  );
+}
+
+.visa-logo {
+  width: 48px;
+  height: 48px;
+  position: absolute;
+  right: 1em;
+  bottom: 0.5em;
+  object-fit: cover;
+}
+
+.union-pay-logo {
+  width: 48px;
+  height: 48px;
+  position: absolute;
+  right: 1em;
+  bottom: 0.5em;
+  object-fit: cover;
 }

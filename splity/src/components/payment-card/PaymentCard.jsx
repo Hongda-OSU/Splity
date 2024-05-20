@@ -1,11 +1,22 @@
-import "./MasterCard.css";
+import Image from "next/image";
+import { VisaLogo, UnionPayLogo } from "@/helper/image";
+import "./PaymentCard.css";
 
-const MasterCard = ({ card_number, name, expiry, cvc }) => {
-  return (
-    <div className="flip-card">
-      <div className="flip-card-inner">
-        <div className="flip-card-front">
-          <p className="heading_8264">MASTERCARD</p>
+const PaymentCard = ({ card_number, name, expiry, cvc, payment_method }) => {
+  const getCardLogo = () => {
+    switch (payment_method) {
+      case "Visa":
+        return (
+          <Image
+            src={VisaLogo}
+            alt=""
+            width="auto"
+            height="auto"
+            className="visa-logo"
+          />
+        );
+      case "MasterCard":
+        return (
           <svg
             className="logo"
             x="0px"
@@ -27,6 +38,53 @@ const MasterCard = ({ card_number, name, expiry, cvc }) => {
               d="M18,24c0,4.755,2.376,8.95,6,11.48c3.624-2.53,6-6.725,6-11.48s-2.376-8.95-6-11.48 C20.376,15.05,18,19.245,18,24z"
             ></path>
           </svg>
+        );
+      case "UnionPay":
+        return (
+          <Image
+            src={UnionPayLogo}
+            alt=""
+            width="auto"
+            height="auto"
+            className="union-pay-logo"
+          />
+        );
+      default:
+        return (
+          <svg
+            className="logo"
+            x="0px"
+            y="0px"
+            width="36"
+            height="36"
+            viewBox="0 0 48 48"
+          >
+            <path
+              fill="#ff9800"
+              d="M32 10A14 14 0 1 0 32 38A14 14 0 1 0 32 10Z"
+            ></path>
+            <path
+              fill="#d50000"
+              d="M16 10A14 14 0 1 0 16 38A14 14 0 1 0 16 10Z"
+            ></path>
+            <path
+              fill="#ff3d00"
+              d="M18,24c0,4.755,2.376,8.95,6,11.48c3.624-2.53,6-6.725,6-11.48s-2.376-8.95-6-11.48 C20.376,15.05,18,19.245,18,24z"
+            ></path>
+          </svg>
+        );
+    }
+  };
+
+  return (
+    <div
+      className="flip-card"
+      style={payment_method === "MasterCard" ? {} : { color: "#fcfcfc" }}
+    >
+      <div className="flip-card-inner">
+        <div className={`flip-card-front ${payment_method}`}>
+          <p className="heading_8264">{payment_method}</p>
+          {getCardLogo()}
           <svg
             version="1.1"
             className="chip"
@@ -117,8 +175,8 @@ const MasterCard = ({ card_number, name, expiry, cvc }) => {
           </p>
           <p className="name">{name ? name : "YOUR NAME"}</p>
         </div>
-        <div className="flip-card-back">
-          <div className="strip"></div>
+        <div className={`flip-card-back ${payment_method}`}>
+          <div className={`strip ${payment_method + "_strip"}`}></div>
           <div className="mstrip"></div>
           <div className="sstrip">
             <p className="code">{cvc ? cvc : "XXX"}</p>
@@ -129,4 +187,4 @@ const MasterCard = ({ card_number, name, expiry, cvc }) => {
   );
 };
 
-export default MasterCard;
+export default PaymentCard;

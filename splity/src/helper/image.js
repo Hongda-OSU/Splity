@@ -11,6 +11,8 @@ import SuccessImage from "../../public/images/Success.png";
 import PreviewPayerImage from "../../public/images/Consult-Experts.png";
 import EyeOpenImage from "../../public/images/eye-open.svg";
 import EyeCloseImage from "../../public/images/eye-close.svg";
+import VisaLogo from "../../public/images/visa-svgrepo-com.svg";
+import UnionPayLogo from "../../public/images/unionpay-svgrepo-com.svg";
 
 export {
   PaymentSuccessImage,
@@ -26,4 +28,6 @@ export {
   PreviewPayerImage,
   EyeOpenImage,
   EyeCloseImage,
+  VisaLogo,
+  UnionPayLogo
 };

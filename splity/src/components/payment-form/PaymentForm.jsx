@@ -2,12 +2,10 @@
 import { useState } from "react";
 import { useMyStore } from "@/store/store";
 import { useRouter } from "next/navigation";
-import MasterCard from "../payment-card/master/MasterCard";
-import VisaCard from "../payment-card/visa/VisaCard";
+import PaymentCard from "../payment-card/PaymentCard";
 import "./PaymentForm.css";
-import UnionCard from "../payment-card/Union/UnionCard";
 
-const PaymentForm = ({ paymentMethod, type }) => {
+const PaymentForm = ({ payment_method, type }) => {
   const router = useRouter();
   const { setBillPayer, setBillCreator } = useMyStore((state) => ({
     setBillPayer: state.setBillPayer,
@@ -141,28 +139,13 @@ const PaymentForm = ({ paymentMethod, type }) => {
           />
         </div>
       </div>
-      {paymentMethod === 'Visa' ? (
-        <VisaCard
-          card_number={card_number}
-          name={name}
-          expiry={expiry}
-          cvc={cvc}
-        />
-      ) : paymentMethod === 'MasterCard'? (
-        <MasterCard
-          card_number={card_number}
-          name={name}
-          expiry={expiry}
-          cvc={cvc}
-        />
-      ) : (
-        <UnionCard
-          card_number={card_number}
-          name={name}
-          expiry={expiry}
-          cvc={cvc}
-        />
-      )}
+      <PaymentCard
+        card_number={card_number}
+        name={name}
+        expiry={expiry}
+        cvc={cvc}
+        payment_method={payment_method}
+      />
       <button className="button">
         <span className="button-text">Continue</span>
       </button>
