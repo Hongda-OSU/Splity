@@ -78,13 +78,13 @@ export default function SetupGroupBill() {
         </div>
         <div className="flex flex-col flex-grow p-8 mt-6" id={styles.wrapper}>
           <div>
-            <h1 className="text-base font-bold">Group Bill Information</h1>
+            <h1 className="text-base font-bold text-black">Group Bill Information</h1>
             <p className="text-xs mb-4 text-slate-500">
               Splity will use these information to generate a group bill.
             </p>
           </div>
           <form
-            className="flex flex-col flex-grow mt-4"
+            className="flex flex-col flex-grow mt-4 text-black"
             onSubmit={handleSubmit}
           >
             <div className="flex flex-col mb-4">
@@ -96,7 +96,7 @@ export default function SetupGroupBill() {
                 type="text"
                 placeholder="Number of people"
                 value={total_members}
-                className="p-2 border rounded w-full text-sm"
+                className="p-2 border rounded w-full text-sm bg-white placeholder-slate-400 border-slate-300"
                 onChange={handleInputChange(setTotalMembers)}
                 required
               />
@@ -110,7 +110,7 @@ export default function SetupGroupBill() {
                 type="text"
                 placeholder="Total price"
                 value={bill_total}
-                className="p-2 border rounded w-full text-sm"
+                className="p-2 border rounded w-full text-sm bg-white placeholder-slate-400 border-slate-300"
                 onChange={handleInputChange(setBillTotal)}
                 required
               />
@@ -127,7 +127,7 @@ export default function SetupGroupBill() {
                 type="text"
                 value={bill_description}
                 placeholder="Bill description"
-                className="p-2 border rounded w-full text-sm"
+                className="p-2 border rounded w-full text-sm bg-white placeholder-slate-400 border-slate-300"
                 onChange={handleInputChange(setBillDescription)}
                 required
               />
@@ -141,7 +141,7 @@ export default function SetupGroupBill() {
                 type="text"
                 value={password}
                 placeholder="Password"
-                className="p-2 border rounded w-full text-sm"
+                className="p-2 border rounded w-full text-sm bg-white placeholder-slate-400 border-slate-300"
                 onChange={handleInputChange(setPassword)}
                 required
               />

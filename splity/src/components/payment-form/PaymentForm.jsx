@@ -59,8 +59,8 @@ const PaymentForm = ({ payment_method, type }) => {
   };
 
   return (
-    <form className="flex flex-col flex-grow" onSubmit={handleSubmit}>
-      <div className="flex flex-col mb-4">
+    <form className="flex flex-col flex-grow text-black" onSubmit={handleSubmit}>
+      <div className="flex flex-col mb-4 ">
         <label htmlFor="name" className="mb-2 text-sm font-bold">
           Name
         </label>
@@ -68,7 +68,7 @@ const PaymentForm = ({ payment_method, type }) => {
           id="name"
           type="text"
           placeholder="Card holder name"
-          className="p-2 border rounded w-full text-sm outline-none"
+          className="p-2 border rounded w-full text-sm outline-none bg-white placeholder-slate-400 border-slate-300"
           value={name}
           onChange={(e) => setName(e.target.value)}
           required
@@ -82,7 +82,7 @@ const PaymentForm = ({ payment_method, type }) => {
           id="card-number"
           type="text"
           placeholder="Card number (16 digits)"
-          className="p-2 border rounded w-full text-sm outline-none"
+          className="p-2 border rounded w-full text-sm outline-none bg-white placeholder-slate-400 border-slate-300"
           onChange={handleCardNumber}
           required
         />
@@ -94,7 +94,7 @@ const PaymentForm = ({ payment_method, type }) => {
         <div className="flex flex-row gap-2">
           <select
             id="expires-month"
-            className="p-2 border rounded flex-1 text-sm"
+            className="p-2 border rounded flex-1 text-sm border-slate-300 bg-white"
             onChange={handleExpiryChange("month")}
             required
           >
@@ -114,7 +114,7 @@ const PaymentForm = ({ payment_method, type }) => {
           </select>
           <select
             id="expires-year"
-            className="p-2 border rounded flex-1 text-sm"
+            className="p-2 border rounded flex-1 text-sm border-slate-300 bg-white"
             onChange={handleExpiryChange("year")}
             required
           >
@@ -130,7 +130,7 @@ const PaymentForm = ({ payment_method, type }) => {
           </select>
           <input
             id="cvc"
-            className="p-2 border flex-1 rounded w-full text-sm"
+            className="p-2 border flex-1 rounded w-full text-sm bg-white placeholder-slate-400 border-slate-300"
             type="text"
             placeholder="CVC"
             value={cvc}
