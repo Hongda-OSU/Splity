@@ -17,7 +17,7 @@ const Authenticator = ({ back }) => {
   const { setBillPayer } = useMyStore((state) => ({
     setBillPayer: state.setBillPayer,
   }));
-  const { loading, fetchData } = useAxios(authenticate, "POST");
+  const { loading, error, fetchData } = useAxios(authenticate, "POST");
   const [bill_id, setBillId] = useState("");
   const [password, setPassword] = useState("");
 
