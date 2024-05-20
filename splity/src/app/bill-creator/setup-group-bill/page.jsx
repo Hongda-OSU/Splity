@@ -2,6 +2,7 @@
 import { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
+import FormInput from "@/components/form-input/FormInput";
 import dynamic from "next/dynamic";
 import useAxios from "@/helper/useAxios";
 import { create_bill } from "@/helper/api";
@@ -78,7 +79,9 @@ export default function SetupGroupBill() {
         </div>
         <div className="flex flex-col flex-grow p-8 mt-6" id={styles.wrapper}>
           <div>
-            <h1 className="text-base font-bold text-black">Group Bill Information</h1>
+            <h1 className="text-base font-bold text-black">
+              Group Bill Information
+            </h1>
             <p className="text-xs mb-4 text-slate-500">
               Splity will use these information to generate a group bill.
             </p>
@@ -87,65 +90,34 @@ export default function SetupGroupBill() {
             className="flex flex-col flex-grow mt-4 text-black"
             onSubmit={handleSubmit}
           >
-            <div className="flex flex-col mb-4">
-              <label htmlFor="people" className="mb-2 font-bold text-sm">
-                People
-              </label>
-              <input
-                id="people"
-                type="text"
-                placeholder="Number of people"
-                value={total_members}
-                className="p-2 border rounded w-full text-sm bg-white placeholder-slate-400 border-slate-300"
-                onChange={handleInputChange(setTotalMembers)}
-                required
-              />
-            </div>
-            <div className="flex flex-col mb-4">
-              <label htmlFor="price" className="mb-2 font-bold text-sm">
-                Price
-              </label>
-              <input
-                id="price"
-                type="text"
-                placeholder="Total price"
-                value={bill_total}
-                className="p-2 border rounded w-full text-sm bg-white placeholder-slate-400 border-slate-300"
-                onChange={handleInputChange(setBillTotal)}
-                required
-              />
-            </div>
-            <div className="flex flex-col mb-4">
-              <label
-                htmlFor="bill-description"
-                className="mb-2 font-bold text-sm"
-              >
-                Bill Description
-              </label>
-              <input
-                id="bill-description"
-                type="text"
-                value={bill_description}
-                placeholder="Bill description"
-                className="p-2 border rounded w-full text-sm bg-white placeholder-slate-400 border-slate-300"
-                onChange={handleInputChange(setBillDescription)}
-                required
-              />
-            </div>
-            <div className="flex flex-col mb-8">
-              <label htmlFor="password" className="mb-2 font-bold text-sm">
-                Password
-              </label>
-              <input
-                id="password"
-                type="text"
-                value={password}
-                placeholder="Password"
-                className="p-2 border rounded w-full text-sm bg-white placeholder-slate-400 border-slate-300"
-                onChange={handleInputChange(setPassword)}
-                required
-              />
-            </div>
+            <FormInput
+              id="people"
+              label="People"
+              placeholder="Number of people"
+              value={total_members}
+              onChange={handleInputChange(setTotalMembers)}
+            />
+            <FormInput
+              id="price"
+              label="Price"
+              placeholder="Total price"
+              value={bill_total}
+              onChange={handleInputChange(setBillTotal)}
+            />
+            <FormInput
+              id="bill-description"
+              label="Bill Description"
+              placeholder="Bill description"
+              value={bill_description}
+              onChange={handleInputChange(setBillDescription)}
+            />
+            <FormInput
+              id="password"
+              label="Password"
+              placeholder="Password"
+              value={password}
+              onChange={handleInputChange(setPassword)}
+            />
             <button className={styles.button} type="submit" disabled={loading}>
               <span className={styles["button-text"]}>Let&apos;s Splity</span>
             </button>
