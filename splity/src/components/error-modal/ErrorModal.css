@@ -1,0 +1,74 @@
+.container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(255, 255, 255, 0.6);
+  backdrop-filter: blur(1px);
+  z-index: 1000;
+}
+
+.modal {
+  width: 300px;
+  height: 200px;
+  display: flex;
+  flex-flow: column nowrap;
+  margin: auto;
+  background: #f8f8f8;
+  border: 2px solid #000;
+  border-radius: 8px;
+  padding: 1.5em;
+}
+
+.modal-header {
+  width: 100%;
+  height: auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.warning {
+  width: fit-content;
+  overflow-wrap: break-word;
+  color: #000;
+  font-family: "Montserrat", sans-serif;
+  font-size: 0.9rem;
+  font-weight: 600;
+  letter-spacing: -1px;
+  white-space: nowrap;
+}
+
+.close-button {
+  background: #0000;
+  width: fit-content;
+  overflow-wrap: break-word;
+  color: #f00;
+  font-family: "Montserrat", sans-serif;
+  font-size: 0.9rem;
+  font-weight: 800;
+  margin-right: 1em;
+  white-space: nowrap;
+}
+
+.modal-content {
+  width: 100%;
+  height: 100%;
+  display: flex;
+}
+
+.content {
+  width: fit-content;
+  overflow-wrap: break-word;
+  color: #000;
+  font-family: "Montserrat", sans-serif;
+  font-size: 0.9rem;
+  font-weight: 600;
+  letter-spacing: -0.5px;
+  white-space: nowrap;
+  margin: auto;
+}

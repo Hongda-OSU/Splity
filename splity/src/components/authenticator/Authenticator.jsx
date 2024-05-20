@@ -5,6 +5,7 @@ import { authenticate } from "@/helper/api";
 import { useRouter } from "next/navigation";
 import useAxios from "@/helper/useAxios";
 import dynamic from "next/dynamic";
+import ErrorModal from "../error-modal/ErrorModal";
 import "./Authenticator.css";
 
 const Loading = dynamic(() => import("../loading/Loading"), {
@@ -16,24 +17,36 @@ const Authenticator = ({ back }) => {
   const { setBillPayer } = useMyStore((state) => ({
     setBillPayer: state.setBillPayer,
   }));
-  const { loading, error, fetchData } = useAxios(authenticate, "POST");
+  const { loading, fetchData } = useAxios(authenticate, "POST");
   const [bill_id, setBillId] = useState("");
   const [password, setPassword] = useState("");
 
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [errorMessage, setErrorMessage] = useState("");
+
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const data = await fetchData({ bill_id, password });
-
-    if (data) {
-      const { bill_creator, bill_description, bill_individual } = data;
-      setBillPayer({
-        bill_id,
-        bill_creator,
-        bill_description,
-        bill_amount: bill_individual,
-      });
-      router.push("/bill-payer/payment");
+    try {
+      const data = await fetchData({ bill_id, password });
+      if (data) {
+        const { bill_creator, bill_description, bill_individual } = data;
+        setBillPayer({
+          bill_id,
+          bill_creator,
+          bill_description,
+          bill_amount: bill_individual,
+        });
+        router.push("/bill-payer/payment");
+      }
+    } catch (error) {
+      setErrorMessage(error.response.data.message);
+      setIsModalOpen(true);
     }
+  };
+
+  const onModalClose = () => {
+    setErrorMessage("");
+    setIsModalOpen(false);
   };
 
   return (
@@ -45,6 +58,9 @@ const Authenticator = ({ back }) => {
             Enter Bill ID and Password from your friend in order to join a bill.
           </p>
           {loading && <Loading />}
+          {isModalOpen && (
+            <ErrorModal onClose={onModalClose} errorMessage={errorMessage} />
+          )}
           <label htmlFor="bill-id" className="text-sm mb-2 font-medium">
             Bill ID
           </label>

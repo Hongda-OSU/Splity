@@ -18,7 +18,7 @@ const useAxios = (url, method = "GET", options = {}) => {
       return res.data;
     } catch (err) {
       setError(err);
-      return null;
+      throw err;
     } finally {
       setLoading(false);
     }
