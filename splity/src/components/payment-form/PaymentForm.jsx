@@ -68,7 +68,7 @@ const PaymentForm = ({ payment_method, type }) => {
           id="name"
           type="text"
           placeholder="Card holder name"
-          className="p-2 border rounded w-full text-sm"
+          className="p-2 border rounded w-full text-sm outline-none"
           value={name}
           onChange={(e) => setName(e.target.value)}
           required
