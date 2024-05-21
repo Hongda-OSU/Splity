@@ -47,6 +47,8 @@ const Authenticator = ({ back }) => {
 
   const onModalClose = () => {
     setErrorMessage("");
+    setBillId("");
+    setPassword("");
     setIsModalOpen(false);
   };
 
@@ -68,7 +70,7 @@ const Authenticator = ({ back }) => {
             value={bill_id}
             placeholder="Enter Bill ID"
             onChange={(e) => setBillId(e.target.value)}
-            marginBottom="4"
+            marginBottom={2}
           />
           <TextInput
             id="password"
@@ -76,7 +78,7 @@ const Authenticator = ({ back }) => {
             value={password}
             placeholder="Enter Password"
             onChange={(e) => setPassword(e.target.value)}
-            marginBottom="8"
+            marginBottom={4}
           />
           <div className="flex justify-between">
             <button

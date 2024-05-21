@@ -48,6 +48,8 @@ const ResumeAuth = ({ back }) => {
 
   const onModalClose = () => {
     setErrorMessage("");
+    setBillId("");
+    setResumeCode("");
     setIsModalOpen(false);
   };
 
@@ -69,7 +71,7 @@ const ResumeAuth = ({ back }) => {
             value={bill_id}
             placeholder="Enter Bill ID"
             onChange={(e) => setBillId(e.target.value)}
-            marginBottom="4"
+            marginBottom={2}
           />
           <TextInput
             id="resume_code"
@@ -77,7 +79,7 @@ const ResumeAuth = ({ back }) => {
             value={resume_code}
             placeholder="Enter resume code"
             onChange={(e) => setResumeCode(e.target.value)}
-            marginBottom="8"
+            marginBottom={4}
           />
           <div className="flex justify-between">
             <button
