@@ -1,9 +1,9 @@
-import React from 'react';
+import React from "react";
 
-const SuccessInput = ({ labelFor, labelText, value }) => {
+const SuccessInput = ({ labelFor, labelStyle, labelText, value }) => {
   return (
     <div className="flex flex-col mb-2">
-      <label htmlFor={labelFor} className="text-sm font-bold mb-2">
+      <label htmlFor={labelFor} className={labelStyle}>
         {labelText} <span className="text-red-500">*</span>
       </label>
       <input
