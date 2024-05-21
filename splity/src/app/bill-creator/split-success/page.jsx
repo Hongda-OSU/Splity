@@ -81,7 +81,7 @@ export default function SplitSuccess() {
           </div>
         </div>
         <p className="text-xs text-gray-600 my-8" id={styles.wrapper2}>
-          Bill expired at {timeStampToDate(billCreator.ttl)}
+          Bill expires on {timeStampToDate(billCreator.ttl)}
         </p>
         <Link href="/" className="w-full flex justify-center">
           <button className={styles.button}>
