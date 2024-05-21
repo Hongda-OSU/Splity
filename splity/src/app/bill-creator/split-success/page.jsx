@@ -7,6 +7,7 @@ import { useMyStore } from "@/store/store";
 import { SuccessImage, EyeOpenImage, EyeCloseImage } from "@/helper/image";
 import { timeStampToDate } from "@/helper/date";
 import styles from "./split-success.module.css";
+import SuccessInput from "@/components/success-input/SuccessInput";
 
 const Stars = dynamic(() => import("@/components/stars/Stars"), {
   ssr: false,
@@ -35,25 +36,15 @@ export default function SplitSuccess() {
           Share your Bill ID & Password with your friends
         </p>
         <div className="flex flex-col w-full max-w-xs mt-8" id={styles.wrapper}>
-          <label htmlFor="bill-id" className="text-sm font-bold mb-2">
-            Bill ID <span className="text-red-500">*</span>
-          </label>
-          <input
-            id="bill-id"
-            type="text"
+          <SuccessInput
+            labelFor="bill-id"
+            labelText="Bill ID"
             value={billCreator.bill_id}
-            className="text-sm font-bold p-3 border rounded outline-none"
-            readOnly
           />
-          <label htmlFor="password" className="text-sm font-bold mt-4 mb-2">
-            Password <span className="text-red-500">*</span>
-          </label>
-          <input
-            id="password"
-            type="text"
+          <SuccessInput
+            labelFor="password"
+            labelText="Password"
             value={billCreator.password}
-            className="text-sm font-bold p-3 border rounded outline-none"
-            readOnly
           />
           <label htmlFor="resume-code" className="text-sm font-bold mt-4 mb-2">
             Resume Code
