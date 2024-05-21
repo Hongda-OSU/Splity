@@ -1,5 +1,3 @@
-import React from 'react';
-
 const SuccessInput = ({ labelFor, labelText, value }) => {
   return (
     <div className="flex flex-col mb-2">
@@ -11,7 +9,7 @@ const SuccessInput = ({ labelFor, labelText, value }) => {
         type="text"
         value={value}
         className="text-sm font-bold p-3 border rounded outline-none"
-        ReadOnly
+        readOnly
       />
     </div>
   );
