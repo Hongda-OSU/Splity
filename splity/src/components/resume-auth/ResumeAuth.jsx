@@ -5,6 +5,7 @@ import { resume_bill } from "@/helper/api";
 import { useRouter } from "next/navigation";
 import useAxios from "@/helper/useAxios";
 import dynamic from "next/dynamic";
+import ErrorModal from "../error-modal/ErrorModal";
 import "./ResumeAuth.css";
 
 const Loading = dynamic(() => import("../loading/Loading"), {
@@ -20,20 +21,33 @@ const ResumeAuth = ({ back }) => {
   const [bill_id, setBillId] = useState("");
   const [resume_code, setResumeCode] = useState("");
 
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [errorMessage, setErrorMessage] = useState("");
+
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const data = await fetchData({ bill_id, resume_code });
 
-    if (data) {
-      const { password, ttl } = data;
-      setBillCreator({
-        bill_id,
-        resume_code,
-        password,
-        ttl,
-      });
-      router.push("/bill-creator/split-success");
+    try {
+      const data = await fetchData({ bill_id, resume_code });
+      if (data) {
+        const { password, ttl } = data;
+        setBillCreator({
+          bill_id,
+          resume_code,
+          password,
+          ttl,
+        });
+        router.push("/bill-creator/split-success");
+      }
+    } catch (error) {
+      setErrorMessage(error.response.data.message);
+      setIsModalOpen(true);
     }
+  };
+
+  const onModalClose = () => {
+    setErrorMessage("");
+    setIsModalOpen(false);
   };
 
   return (
@@ -45,6 +59,9 @@ const ResumeAuth = ({ back }) => {
             Enter Bill ID and Resume Code in order to resume to a previous bill.
           </p>
           {loading && <Loading />}
+          {isModalOpen && (
+            <ErrorModal onClose={onModalClose} errorMessage={errorMessage} />
+          )}
           <label htmlFor="bill-id" className="text-sm mb-2 font-medium">
             Bill ID
           </label>

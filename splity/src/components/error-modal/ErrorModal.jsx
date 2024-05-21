@@ -3,7 +3,7 @@ import "./ErrorModal.css";
 
 const ErrorModal = ({ onClose, errorMessage }) => {
   return ReactDOM.createPortal(
-    <div className="container">
+    <div className="error-modal">
       <div className="modal">
         <div className="modal-header">
           <p className="warning">Warning</p>
