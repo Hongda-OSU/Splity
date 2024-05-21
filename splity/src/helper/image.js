@@ -13,7 +13,7 @@ import EyeOpenImage from "../../public/images/eye-open.svg";
 import EyeCloseImage from "../../public/images/eye-close.svg";
 import VisaLogo from "../../public/images/visa-svgrepo-com.svg";
 import UnionPayLogo from "../../public/images/unionpay-svgrepo-com.svg";
-import ErrorImage from "../../public/images/Street-Protest.svg";
+import ErrorImage from "../../public/images/Street-Protest.png";
 
 export {
   PaymentSuccessImage,
