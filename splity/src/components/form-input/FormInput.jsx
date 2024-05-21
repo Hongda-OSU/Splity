@@ -1,6 +1,13 @@
-import React from 'react';
+import React from "react";
 
-const FormINput = ({ id, label, placeholder, value, onChange, required = true }) => {
+const FormINput = ({
+  id,
+  label,
+  placeholder,
+  value,
+  onChange,
+  required = true,
+}) => {
   return (
     <div className="flex flex-col mb-4">
       <label htmlFor={id} className="mb-2 font-bold text-sm">

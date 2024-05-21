@@ -2,6 +2,7 @@
 import { useState } from "react";
 import { useMyStore } from "@/store/store";
 import { useRouter } from "next/navigation";
+import FormInput from "../form-input/FormInput";
 import PaymentCard from "../payment-card/PaymentCard";
 import "./PaymentForm.css";
 
@@ -59,34 +60,25 @@ const PaymentForm = ({ payment_method, type }) => {
   };
 
   return (
-    <form className="flex flex-col flex-grow text-black" onSubmit={handleSubmit}>
-      <div className="flex flex-col mb-4 ">
-        <label htmlFor="name" className="mb-2 text-sm font-bold">
-          Name
-        </label>
-        <input
-          id="name"
-          type="text"
-          placeholder="Card holder name"
-          className="p-2 border rounded w-full text-sm outline-none bg-white placeholder-slate-400 border-slate-300"
-          value={name}
-          onChange={(e) => setName(e.target.value)}
-          required
-        />
-      </div>
-      <div className="flex flex-col mb-4">
-        <label htmlFor="card-number" className="mb-2 text-sm font-bold">
-          Card number
-        </label>
-        <input
-          id="card-number"
-          type="text"
-          placeholder="Card number (16 digits)"
-          className="p-2 border rounded w-full text-sm outline-none bg-white placeholder-slate-400 border-slate-300"
-          onChange={handleCardNumber}
-          required
-        />
-      </div>
+    <form
+      className="flex flex-col flex-grow text-black"
+      onSubmit={handleSubmit}
+    >
+      <FormInput
+        id="name"
+        label="Name"
+        placeholder="Card holder name"
+        value={name}
+        onChange={(e) => setName(e.target.value)}
+        required={true}
+      />
+      <FormInput
+        id="card-number"
+        label="Card number"
+        placeholder="Card number (16 digits)"
+        onChange={handleCardNumber}
+        required={true}
+      />
       <div className="flex flex-col">
         <label htmlFor="expires-month" className="mb-2 text-sm font-bold">
           Card Info
