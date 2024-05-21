@@ -21,10 +21,6 @@ const PaymentForm = ({ payment_method, type }) => {
   const [showErrorModal, setShowErrorModal] = useState(false);
   const [errorMessage, setErrorMessage] = useState("");
 
-  const handleInputChange = (setter) => (e) => {
-    setter(e.target.value);
-  };
-
   const handleCardNumber = (e) => {
     const input = e.target.value.replace(/\D/g, "");
     if (input.length > 16) {
@@ -82,7 +78,10 @@ const PaymentForm = ({ payment_method, type }) => {
       onSubmit={handleSubmit}
     >
       {showErrorModal && (
-        <ErrorModal onClose={() => setShowErrorModal(false)} errorMessage={errorMessage} />
+        <ErrorModal
+          onClose={() => setShowErrorModal(false)}
+          errorMessage={errorMessage}
+        />
       )}
       <FormInput
         id="name"
@@ -91,7 +90,7 @@ const PaymentForm = ({ payment_method, type }) => {
         placeholder="Card holder name"
         value={name}
         inputStyle="p-2 border rounded w-full text-sm bg-white placeholder-slate-400 border-slate-300"
-        onChange={handleInputChange(setName)}
+        onChange={(e) => setName(e.target.value)}
       />
       <FormInput
         id="card-number"
@@ -102,7 +101,7 @@ const PaymentForm = ({ payment_method, type }) => {
         onChange={handleCardNumber}
         pattern="\d{16}"
         onInvalid={(e) => e.target.setCustomValidity("Need exactly 16 digits")}
-        onInput={(e) => e.target.setCustomValidity('')}
+        onInput={(e) => e.target.setCustomValidity("")}
       />
       <div className="flex flex-col">
         <label htmlFor="expires-month" className="mb-2 text-sm font-bold">
@@ -154,6 +153,10 @@ const PaymentForm = ({ payment_method, type }) => {
             pattern="\d{3}"
             onChange={handleCVCChange}
             required
+            onInvalid={(e) =>
+              e.target.setCustomValidity("Need exactly 3 digits")
+            }
+            onInput={(e) => e.target.setCustomValidity("")}
           />
         </div>
       </div>
