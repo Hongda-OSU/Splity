@@ -15,6 +15,7 @@ const PaymentForm = ({ payment_method, type }) => {
   }));
 
   const [card_number, setCardNumber] = useState("XXXX XXXX XXXX XXXX");
+  const [number, setNumber] = useState("");
   const [name, setName] = useState("");
   const [expiry, setExpiry] = useState({ month: "", year: "" });
   const [cvc, setCVC] = useState("");
@@ -27,6 +28,7 @@ const PaymentForm = ({ payment_method, type }) => {
       setErrorMessage("Card number must be 16 digits.");
       setShowErrorModal(true);
     } else {
+      setNumber(input);
       let formattedNumber = "";
       for (let i = 0; i < input.length; i++) {
         if (i > 0 && i % 4 === 0) {
@@ -99,6 +101,8 @@ const PaymentForm = ({ payment_method, type }) => {
         placeholder="Card number (16 digits)"
         inputStyle="p-2 border rounded w-full text-sm bg-white placeholder-slate-400 border-slate-300"
         onChange={handleCardNumber}
+        value={number}
+        type="text"
         pattern="\d{16}"
         onInvalid={(e) => e.target.setCustomValidity("Need exactly 16 digits")}
         onInput={(e) => e.target.setCustomValidity("")}
