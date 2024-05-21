@@ -91,7 +91,7 @@ const PaymentForm = ({ payment_method, type }) => {
         placeholder="Card holder name"
         value={name}
         inputStyle="p-2 border rounded w-full text-sm bg-white placeholder-slate-400 border-slate-300"
-        onChange={(e) => setName(e.target.value)}
+        onChange={handleInputChange(setName)}
       />
       <FormInput
         id="card-number"
