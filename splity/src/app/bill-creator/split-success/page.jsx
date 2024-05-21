@@ -38,11 +38,13 @@ export default function SplitSuccess() {
         <div className="flex flex-col w-full max-w-xs mt-8" id={styles.wrapper}>
           <SuccessInput
             labelFor="bill-id"
+            labelStyle="text-sm font-bold mb-2"
             labelText="Bill ID"
             value={billCreator.bill_id}
           />
           <SuccessInput
             labelFor="password"
+            labelStyle="text-sm font-bold mt-2 mb-2"
             labelText="Password"
             value={billCreator.password}
           />
