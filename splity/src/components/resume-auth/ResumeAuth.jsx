@@ -48,8 +48,6 @@ const ResumeAuth = ({ back }) => {
 
   const onModalClose = () => {
     setErrorMessage("");
-    setBillId("");
-    setResumeCode("");
     setIsModalOpen(false);
   };
 

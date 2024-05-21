@@ -18,32 +18,31 @@ const PaymentForm = ({ payment_method, type }) => {
   const [name, setName] = useState("");
   const [expiry, setExpiry] = useState({ month: "", year: "" });
   const [cvc, setCVC] = useState("");
+
   const [showErrorModal, setShowErrorModal] = useState(false);
   const [errorMessage, setErrorMessage] = useState("");
 
-  const handleCardNumber = (e) => {
+  const handleCardNumberChange = (e) => {
     const input = e.target.value.replace(/\D/g, "");
     if (input.length > 16) {
       setErrorMessage("Card number must be 16 digits.");
       setShowErrorModal(true);
     } else {
-      let formattedNumber = "";
+      let cardNumber = "";
       for (let i = 0; i < input.length; i++) {
         if (i > 0 && i % 4 === 0) {
-          formattedNumber += " ";
+          cardNumber += " ";
         }
-        formattedNumber += input[i];
+        cardNumber += input[i];
       }
-
-      while (formattedNumber.length < 19) {
-        if ((formattedNumber.length + 1) % 5 === 0) {
-          formattedNumber += " ";
+      while (cardNumber.length < 19) {
+        if ((cardNumber.length + 1) % 5 === 0) {
+          cardNumber += " ";
         } else {
-          formattedNumber += "X";
+          cardNumber += "X";
         }
       }
-
-      setCardNumber(formattedNumber);
+      setCardNumber(cardNumber);
     }
   };
 
@@ -96,12 +95,14 @@ const PaymentForm = ({ payment_method, type }) => {
         id="card-number"
         label="Card number"
         labelStyle="mb-2 font-bold text-sm"
-        placeholder="Card number (16 digits)"
+        placeholder="Card number"
         value={card_number.replace(/X/g, "").replace(/ /g, "")}
         inputStyle="p-2 border rounded w-full text-sm bg-white placeholder-slate-400 border-slate-300"
-        onChange={handleCardNumber}
+        onChange={handleCardNumberChange}
         pattern="\d{16}"
-        onInvalid={(e) => e.target.setCustomValidity("Need exactly 16 digits")}
+        onInvalid={(e) =>
+          e.target.setCustomValidity("Card number is 16 digits")
+        }
         onInput={(e) => e.target.setCustomValidity("")}
       />
       <div className="flex flex-col">
@@ -154,9 +155,7 @@ const PaymentForm = ({ payment_method, type }) => {
             pattern="\d{3}"
             onChange={handleCVCChange}
             required
-            onInvalid={(e) =>
-              e.target.setCustomValidity("Need exactly 3 digits")
-            }
+            onInvalid={(e) => e.target.setCustomValidity("CVC is 3 digits")}
             onInput={(e) => e.target.setCustomValidity("")}
           />
         </div>

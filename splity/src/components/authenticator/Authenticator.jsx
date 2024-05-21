@@ -47,8 +47,6 @@ const Authenticator = ({ back }) => {
 
   const onModalClose = () => {
     setErrorMessage("");
-    setBillId("");
-    setPassword("");
     setIsModalOpen(false);
   };
 
