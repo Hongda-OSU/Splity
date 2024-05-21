@@ -3,14 +3,16 @@ import React from "react";
 const FormInput = ({
   id,
   label,
+  labelStyle,
   placeholder,
   value,
+  inputStyle,
   onChange,
   required = true,
 }) => {
   return (
     <div className="flex flex-col mb-4">
-      <label htmlFor={id} className="mb-2 font-bold text-sm">
+      <label htmlFor={id} className={labelStyle}>
         {label}
       </label>
       <input
@@ -18,7 +20,7 @@ const FormInput = ({
         type="text"
         placeholder={placeholder}
         value={value}
-        className="p-2 border rounded w-full text-sm bg-white placeholder-slate-400 border-slate-300"
+        className={inputStyle}
         onChange={onChange}
         required={required}
       />

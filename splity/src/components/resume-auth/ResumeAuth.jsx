@@ -7,7 +7,7 @@ import useAxios from "@/helper/useAxios";
 import dynamic from "next/dynamic";
 import ErrorModal from "../error-modal/ErrorModal";
 import "./ResumeAuth.css";
-import TextInput from "../text-input/TextInput";
+import FormInput from "../form-input/FormInput";
 
 const Loading = dynamic(() => import("../loading/Loading"), {
   ssr: false,
@@ -63,21 +63,23 @@ const ResumeAuth = ({ back }) => {
           {isModalOpen && (
             <ErrorModal onClose={onModalClose} errorMessage={errorMessage} />
           )}
-          <TextInput
+          <FormInput
             id="bill-id"
             label="Bill ID"
-            value={bill_id}
+            labelStyle="text-sm mb-2 font-medium"
             placeholder="Enter Bill ID"
+            value={bill_id}
+            inputStyle="p-2 border border-slate-300 rounded bg-slate-100 placeholder-slate-400 text-sm"
             onChange={(e) => setBillId(e.target.value)}
-            marginBottom="4"
           />
-          <TextInput
-            id="resume_code"
+          <FormInput
+            id="Resume Code"
             label="Resume Code"
-            value={resume_code}
+            labelStyle="text-sm mb-2 font-medium"
             placeholder="Enter resume code"
+            value={resume_code}
+            inputStyle="mb-4 p-2 border border-slate-300 rounded bg-slate-100 placeholder-slate-400 text-sm"
             onChange={(e) => setResumeCode(e.target.value)}
-            marginBottom="8"
           />
           <div className="flex justify-between">
             <button

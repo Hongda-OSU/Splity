@@ -67,14 +67,18 @@ const PaymentForm = ({ payment_method, type }) => {
       <FormInput
         id="name"
         label="Name"
+        labelStyle="mb-2 font-bold text-sm"
         placeholder="Card holder name"
         value={name}
+        inputStyle="p-2 border rounded w-full text-sm bg-white placeholder-slate-400 border-slate-300"
         onChange={(e) => setName(e.target.value)}
       />
       <FormInput
         id="card-number"
         label="Card number"
+        labelStyle="mb-2 font-bold text-sm"
         placeholder="Card number (16 digits)"
+        inputStyle="p-2 border rounded w-full text-sm bg-white placeholder-slate-400 border-slate-300"
         onChange={handleCardNumber}
       />
       <div className="flex flex-col">

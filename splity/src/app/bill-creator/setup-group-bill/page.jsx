@@ -93,29 +93,37 @@ export default function SetupGroupBill() {
             <FormInput
               id="people"
               label="People"
+              labelStyle="mb-2 font-bold text-sm"
               placeholder="Number of people"
               value={total_members}
+              inputStyle="p-2 border rounded w-full text-sm bg-white placeholder-slate-400 border-slate-300"
               onChange={handleInputChange(setTotalMembers)}
             />
             <FormInput
               id="price"
               label="Price"
+              labelStyle="mb-2 font-bold text-sm"
               placeholder="Total price"
               value={bill_total}
+              inputStyle="p-2 border rounded w-full text-sm bg-white placeholder-slate-400 border-slate-300"
               onChange={handleInputChange(setBillTotal)}
             />
             <FormInput
               id="bill-description"
               label="Bill Description"
+              labelStyle="mb-2 font-bold text-sm"
               placeholder="Bill description"
               value={bill_description}
+              inputStyle="p-2 border rounded w-full text-sm bg-white placeholder-slate-400 border-slate-300"
               onChange={handleInputChange(setBillDescription)}
             />
             <FormInput
               id="password"
               label="Password"
+              labelStyle="mb-2 font-bold text-sm"
               placeholder="Password"
               value={password}
+              inputStyle="p-2 border rounded w-full text-sm bg-white placeholder-slate-400 border-slate-300"
               onChange={handleInputChange(setPassword)}
             />
             <button className={styles.button} type="submit" disabled={loading}>
