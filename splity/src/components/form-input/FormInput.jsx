@@ -1,6 +1,6 @@
 import React from "react";
 
-const FormINput = ({
+const FormInput = ({
   id,
   label,
   placeholder,
@@ -26,4 +26,4 @@ const FormINput = ({
   );
 };
 
-export default FormINput;
+export default FormInput;

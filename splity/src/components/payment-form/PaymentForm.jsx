@@ -70,14 +70,12 @@ const PaymentForm = ({ payment_method, type }) => {
         placeholder="Card holder name"
         value={name}
         onChange={(e) => setName(e.target.value)}
-        required={true}
       />
       <FormInput
         id="card-number"
         label="Card number"
         placeholder="Card number (16 digits)"
         onChange={handleCardNumber}
-        required={true}
       />
       <div className="flex flex-col">
         <label htmlFor="expires-month" className="mb-2 text-sm font-bold">
