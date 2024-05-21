@@ -13,8 +13,8 @@
 }
 
 .modal {
-  width: 300px;
-  height: 200px;
+  width: 260px;
+  height: auto;
   display: flex;
   flex-flow: column nowrap;
   margin: auto;
@@ -70,12 +70,8 @@
   font-weight: 600;
   letter-spacing: -0.5px;
   white-space: nowrap;
-  margin: auto;
+  text-decoration: underline;
+  text-underline-offset: 1px;
+  margin: 3em auto;
 }
 
-.error-image {
-  width: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
