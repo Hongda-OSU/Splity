@@ -7,6 +7,7 @@ import useAxios from "@/helper/useAxios";
 import dynamic from "next/dynamic";
 import ErrorModal from "../error-modal/ErrorModal";
 import "./ResumeAuth.css";
+import TextInput from "../text-input/TextInput";
 
 const Loading = dynamic(() => import("../loading/Loading"), {
   ssr: false,
@@ -62,27 +63,21 @@ const ResumeAuth = ({ back }) => {
           {isModalOpen && (
             <ErrorModal onClose={onModalClose} errorMessage={errorMessage} />
           )}
-          <label htmlFor="bill-id" className="text-sm mb-2 font-medium">
-            Bill ID
-          </label>
-          <input
+          <TextInput
             id="bill-id"
-            type="text"
-            className="mb-4 p-2 border border-slate-300 rounded bg-slate-100 placeholder-slate-400 text-sm"
-            placeholder="Enter Bill ID"
+            label="Bill ID"
             value={bill_id}
+            placeholder="Enter Bill ID"
             onChange={(e) => setBillId(e.target.value)}
+            marginBottom="4"
           />
-          <label htmlFor="resume_code" className="text-sm mb-2 font-medium">
-            Resume Code
-          </label>
-          <input
+          <TextInput
             id="resume_code"
-            type="text"
-            className="mb-8 p-2 border border-slate-300 rounded bg-slate-100 placeholder-slate-400 text-sm"
-            placeholder="Enter resume code"
+            label="Resume Code"
             value={resume_code}
+            placeholder="Enter resume code"
             onChange={(e) => setResumeCode(e.target.value)}
+            marginBottom="8"
           />
           <div className="flex justify-between">
             <button
