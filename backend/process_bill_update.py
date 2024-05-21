@@ -27,13 +27,13 @@ def send_message(connection_id, message):
 
 
 def lambda_handler(event, context):
-
     for record in event["Records"]:
         if record["eventName"] in ["INSERT", "MODIFY"]:
             new_image = record["dynamodb"]["NewImage"]
             history = new_image.get("history", {}).get("M", {})
+            bill_id = new_image.get("bill_id", {}).get("S")
 
-            if not history:
+            if not history or not bill_id:
                 continue
 
             latest_payer, latest_entry = max(
@@ -46,7 +46,10 @@ def lambda_handler(event, context):
             }
 
             message = {"action": "update", "data": latest_info}
-            connections = connections_table.scan().get("Items", [])
+            connections = connections_table.scan(
+                FilterExpression="bill_id = :bill_id",
+                ExpressionAttributeValues={":bill_id": bill_id},
+            ).get("Items", [])
 
             for connection in connections:
                 connection_id = connection["connection_id"]
