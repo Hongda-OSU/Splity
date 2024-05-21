@@ -7,6 +7,7 @@ const FormInput = ({
   value,
   onChange,
   required = true,
+  ...rest
 }) => {
   return (
     <div className="flex flex-col mb-4">
@@ -21,6 +22,7 @@ const FormInput = ({
         className="p-2 border rounded w-full text-sm bg-white placeholder-slate-400 border-slate-300"
         onChange={onChange}
         required={required}
+        {...rest}
       />
     </div>
   );
