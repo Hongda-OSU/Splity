@@ -21,10 +21,6 @@ const PaymentForm = ({ payment_method, type }) => {
   const [showErrorModal, setShowErrorModal] = useState(false);
   const [errorMessage, setErrorMessage] = useState("");
 
-  const handleInputChange = (setter) => (e) => {
-    setter(e.target.value);
-  };
-
   const handleCardNumber = (e) => {
     const input = e.target.value.replace(/\D/g, "");
     if (input.length > 16) {
@@ -94,7 +90,7 @@ const PaymentForm = ({ payment_method, type }) => {
         placeholder="Card holder name"
         value={name}
         inputStyle="p-2 border rounded w-full text-sm bg-white placeholder-slate-400 border-slate-300"
-        onChange={handleInputChange(setName)}
+        onChange={(e) => setName(e.target.value)}
       />
       <FormInput
         id="card-number"
