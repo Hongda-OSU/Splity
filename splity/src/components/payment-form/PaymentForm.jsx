@@ -15,7 +15,6 @@ const PaymentForm = ({ payment_method, type }) => {
   }));
 
   const [card_number, setCardNumber] = useState("XXXX XXXX XXXX XXXX");
-  const [number, setNumber] = useState("");
   const [name, setName] = useState("");
   const [expiry, setExpiry] = useState({ month: "", year: "" });
   const [cvc, setCVC] = useState("");
@@ -28,7 +27,6 @@ const PaymentForm = ({ payment_method, type }) => {
       setErrorMessage("Card number must be 16 digits.");
       setShowErrorModal(true);
     } else {
-      setNumber(input);
       let formattedNumber = "";
       for (let i = 0; i < input.length; i++) {
         if (i > 0 && i % 4 === 0) {
