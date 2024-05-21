@@ -1,4 +1,4 @@
-const SuccessInput = ({ labelFor, labelText, value }) => {
+const SuccessInput = ({ labelFor, labelStyle, labelText, value }) => {
   return (
     <div className="flex flex-col mb-2">
       <label htmlFor={labelFor} className={labelStyle}>

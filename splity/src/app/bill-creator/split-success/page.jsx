@@ -48,7 +48,7 @@ export default function SplitSuccess() {
             labelText="Password"
             value={billCreator.password}
           />
-          <label htmlFor="resume-code" className="text-sm font-bold mt-1 mb-2">
+          <label htmlFor="resume-code" className="text-sm font-bold mt-2 mb-2">
             Resume Code
           </label>
           <div className="relative">
