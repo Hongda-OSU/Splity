@@ -6,7 +6,7 @@ import { useRouter } from "next/navigation";
 import useAxios from "@/helper/useAxios";
 import dynamic from "next/dynamic";
 import ErrorModal from "../error-modal/ErrorModal";
-import TextInput from "../text-input/TextInput";
+import FormInput from "../form-input/FormInput";
 import "./Authenticator.css";
 
 const Loading = dynamic(() => import("../loading/Loading"), {
@@ -64,21 +64,23 @@ const Authenticator = ({ back }) => {
           {isModalOpen && (
             <ErrorModal onClose={onModalClose} errorMessage={errorMessage} />
           )}
-          <TextInput
+          <FormInput
             id="bill-id"
             label="Bill ID"
-            value={bill_id}
+            labelStyle="text-sm mb-2 font-medium"
             placeholder="Enter Bill ID"
+            value={bill_id}
+            inputStyle="p-2 border border-slate-300 rounded bg-slate-100 placeholder-slate-400 text-sm"
             onChange={(e) => setBillId(e.target.value)}
-            marginBottom={2}
           />
-          <TextInput
+          <FormInput
             id="password"
             label="Password"
-            value={password}
+            labelStyle="text-sm mb-2 font-medium"
             placeholder="Enter Password"
+            value={password}
+            inputStyle="mb-4 p-2 border border-slate-300 rounded bg-slate-100 placeholder-slate-400 text-sm"
             onChange={(e) => setPassword(e.target.value)}
-            marginBottom={4}
           />
           <div className="flex justify-between">
             <button
