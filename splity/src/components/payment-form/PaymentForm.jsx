@@ -4,6 +4,7 @@ import { useMyStore } from "@/store/store";
 import { useRouter } from "next/navigation";
 import FormInput from "../form-input/FormInput";
 import PaymentCard from "../payment-card/PaymentCard";
+import ErrorModal from "../error-modal/ErrorModal";
 import "./PaymentForm.css";
 
 const PaymentForm = ({ payment_method, type }) => {
@@ -17,6 +18,8 @@ const PaymentForm = ({ payment_method, type }) => {
   const [name, setName] = useState("");
   const [expiry, setExpiry] = useState({ month: "", year: "" });
   const [cvc, setCVC] = useState("");
+  const [showErrorModal, setShowErrorModal] = useState(false);
+  const [errorMessage, setErrorMessage] = useState("");
 
   const handleInputChange = (setter) => (e) => {
     setter(e.target.value);
@@ -24,24 +27,38 @@ const PaymentForm = ({ payment_method, type }) => {
 
   const handleCardNumber = (e) => {
     const input = e.target.value.replace(/\D/g, "");
-    let cardNumber = "";
-
-    for (let i = 0; i < input.length; i++) {
-      if (i > 0 && i % 4 === 0 && i < 16) {
-        cardNumber += " ";
+    if (input.length > 16) {
+      setErrorMessage("Card number must be 16 digits.");
+      setShowErrorModal(true);
+    } else {
+      let formattedNumber = "";
+      for (let i = 0; i < input.length; i++) {
+        if (i > 0 && i % 4 === 0) {
+          formattedNumber += " ";
+        }
+        formattedNumber += input[i];
       }
-      cardNumber += input[i];
-    }
 
-    while (cardNumber.length < 19) {
-      if ((cardNumber.length + 1) % 5 === 0 && cardNumber.length < 18) {
-        cardNumber += " ";
-      } else {
-        cardNumber += "X";
+      while (formattedNumber.length < 19) {
+        if ((formattedNumber.length + 1) % 5 === 0) {
+          formattedNumber += " ";
+        } else {
+          formattedNumber += "X";
+        }
       }
-    }
 
-    setCardNumber(cardNumber);
+      setCardNumber(formattedNumber);
+    }
+  };
+
+  const handleCVCChange = (e) => {
+    const input = e.target.value.replace(/\D/g, "");
+    if (input.length > 3) {
+      setErrorMessage("CVC must be 3 digits.");
+      setShowErrorModal(true);
+    } else {
+      setCVC(input);
+    }
   };
 
   const handleExpiryChange = (part) => (e) => {
@@ -64,6 +81,9 @@ const PaymentForm = ({ payment_method, type }) => {
       className="flex flex-col flex-grow text-black"
       onSubmit={handleSubmit}
     >
+      {showErrorModal && (
+        <ErrorModal onClose={() => setShowErrorModal(false)} errorMessage={errorMessage} />
+      )}
       <FormInput
         id="name"
         label="Name"
@@ -80,6 +100,9 @@ const PaymentForm = ({ payment_method, type }) => {
         placeholder="Card number (16 digits)"
         inputStyle="p-2 border rounded w-full text-sm bg-white placeholder-slate-400 border-slate-300"
         onChange={handleCardNumber}
+        pattern="\d{16}"
+        onInvalid={(e) => e.target.setCustomValidity("Need exactly 16 digits")}
+        onInput={(e) => e.target.setCustomValidity('')}
       />
       <div className="flex flex-col">
         <label htmlFor="expires-month" className="mb-2 text-sm font-bold">
@@ -128,7 +151,8 @@ const PaymentForm = ({ payment_method, type }) => {
             type="text"
             placeholder="CVC"
             value={cvc}
-            onChange={handleInputChange(setCVC)}
+            pattern="\d{3}"
+            onChange={handleCVCChange}
             required
           />
         </div>

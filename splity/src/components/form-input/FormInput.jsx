@@ -9,6 +9,7 @@ const FormInput = ({
   inputStyle,
   onChange,
   required = true,
+  ...rest
 }) => {
   return (
     <div className="flex flex-col mb-4">
@@ -23,6 +24,7 @@ const FormInput = ({
         className={inputStyle}
         onChange={onChange}
         required={required}
+        {...rest}
       />
     </div>
   );
