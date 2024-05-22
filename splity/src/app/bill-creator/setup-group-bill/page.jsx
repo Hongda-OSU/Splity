@@ -98,8 +98,6 @@ export default function SetupGroupBill() {
               value={total_members}
               inputStyle="p-2 border rounded w-full text-sm bg-white placeholder-slate-400 border-slate-300"
               onChange={handleInputChange(setTotalMembers)}
-              onInvalid={(e) => e.target.setCustomValidity("Need at least 1 person.")}
-              onInput={(e) => e.target.setCustomValidity("")}
               type="number"
               min="1"
             />
